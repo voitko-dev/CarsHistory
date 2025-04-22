@@ -1,0 +1,17 @@
+﻿<Window x:Class="CarsHistory.Windows.FindCarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xctk"
+        xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="Find Car" Height="350" Width="400">
+    <Grid>
+        <!-- WatermarkTextBox для введення марки або моделі -->
+        <toolkit:WatermarkTextBox Name="txtSearch" Width="200" Height="30" Margin="10,10,10,0" HorizontalAlignment="Left" VerticalAlignment="Top" Watermark="Enter Brand or Model" />
+
+        <!-- Кнопка для пошуку -->
+        <Button Name="btnSearchCar" Width="100" Height="30" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,10,10,0" Click="btnSearchCar_Click"/>
+
+        <!-- DataGrid для відображення результатів пошуку -->
+        <DataGrid Name="dataGridCars" Width="350" Height="200" Margin="10,50,10,10" HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="True"/>
+    </Grid>
+</Window>
