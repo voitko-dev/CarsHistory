@@ -1,0 +1,21 @@
+﻿<Window x:Class="CarsHistory.Windows.UserColorsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="User Colors" Height="300" Width="400">
+    <Grid>
+        <ListView Name="UserListView">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="User Name" DisplayMemberBinding="{Binding UserName}" Width="200"/>
+                    <GridViewColumn Header="Color" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Background="{Binding ColorForUser}" Width="50" Height="20"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

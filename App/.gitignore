@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs
+/packages/
+Credential/
+riderModule.iml
+/_ReSharper.Caches/
+appsettings.json
+cars-history.json

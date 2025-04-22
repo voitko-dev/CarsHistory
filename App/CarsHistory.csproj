@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Version>2.5</Version>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+        <ApplicationIcon>Resources\Images\icon.ico</ApplicationIcon>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Extended.Wpf.Toolkit" Version="4.7.25104.5739" />
+      <PackageReference Include="Firebase.Database" Version="1.0.0" />
+      <PackageReference Include="FirebaseAdmin" Version="3.1.0" />
+      <PackageReference Include="FirebaseAuthentication.WPF" Version="4.1.0" />
+      <PackageReference Include="Google.Cloud.Firestore" Version="3.10.0" />
+      <PackageReference Include="OxyPlot.Wpf" Version="2.2.0" />
+      <PackageReference Include="OxyPlot.Wpf.Shared" Version="2.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="Windows\MainWindow.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\Images\ChatGPT Image 6 квіт. 2025 р., 17_08_54.png" />
+      <Resource Include="Resources\Images\Logo.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Resources\Images\icon.ico" />
+      <Resource Include="Resources\Images\icon.ico">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="cars-history.json" />
+      <Content Include="cars-history.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+</Project>

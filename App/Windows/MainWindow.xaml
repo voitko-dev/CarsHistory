@@ -1,0 +1,235 @@
+﻿<Window x:Class="CarsHistory.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"
+        Icon="../Resources/Images/Logo.png"
+        Background="#181735"
+        Title="Car History App" Height="500" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25">
+            </RowDefinition>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="#0F0F2D"></Grid>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <!-- Кнопки для виконання операцій -->
+            <Button Name="btnAddCar"
+                    Content="Додати авто"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Width="150"
+                    Height="30"
+                    Click="btnAddCar_Click"
+                    Margin="10">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FE6584"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#A02F4E"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+
+            <Button Name="btnFindCar"
+                    Content="Знайти авто"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Width="150"
+                    Height="30"
+                    Click="btnFindCar_Click"
+                    Margin="10">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FE6584"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#A02F4E"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+
+            <Button Name="btnCarStatus"
+                    Content="Статус авто"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Width="150"
+                    Height="30"
+                    Click="btnCarStatus_Click"
+                    Margin="10"
+                    Visibility="Visible">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FE6584"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF4C70"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+
+            <Button Name="btnDeleteCar"
+                    Content="Видалити авто"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Width="150"
+                    Height="30"
+                    Click="btnDeleteCar_Click"
+                    Margin="10"
+                    Visibility="Hidden">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FE6584"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF4C70"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+
+            <Button Name="btnNewUsers"
+                    Content="Запити на приєднання"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Width="150"
+                    Height="30"
+                    Click="btnNewUsers_Click"
+                    Margin="10"
+                    Visibility="Hidden">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FE6584"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF4C70"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+
+            <!-- Текстовий блок для ролі -->
+            <TextBlock Grid.Row="1" Name="RoleTextBlock"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontFamily="Times New Roman"
+                       FontSize="36"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       Margin="15">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="15" Color="Khaki" />
+                </TextBlock.Effect>
+            </TextBlock>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
+            <TextBlock 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="10"
+                Foreground="White"
+                FontSize="12"
+                Text="{Binding AppVersion}">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="15" Color="Khaki" />
+                </TextBlock.Effect>
+            </TextBlock>
+        </StackPanel>
+
+        <Grid Grid.Column="1" Grid.RowSpan="2" Margin="0,-250,-610,85" Panel.ZIndex="-1">
+            <Grid.RenderTransform>
+                <RotateTransform Angle="50" />
+            </Grid.RenderTransform>
+
+            <StackPanel Orientation="Horizontal" Margin="-350,150,-255,-250">
+                <StackPanel>
+                    <Border Width="700" Height="35" Background="#3DDDC2" Margin="150,0,0,0" CornerRadius="20" />
+                    <Border Width="700" Height="35" Background="#FC6586" Margin="0,15,0,0" CornerRadius="20" />
+                    <Border Width="700" Height="35" Background="#383660" Margin="75,15,0,0" CornerRadius="20" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.RowSpan="2" Margin="100,-50,-610,85" Panel.ZIndex="-1">
+            <Grid.RenderTransform>
+                <RotateTransform Angle="50" />
+            </Grid.RenderTransform>
+
+            <StackPanel Orientation="Horizontal" Margin="250,100,-255,-250">
+                <StackPanel>
+                    <Border Width="700" Height="35" Background="#3DDDC2" Margin="150,0,0,0" CornerRadius="20" />
+                    <Border Width="700" Height="35" Background="#FC6586" Margin="0,15,0,0" CornerRadius="20" />
+                    <Border Width="700" Height="35" Background="#383660" Margin="75,15,0,0" CornerRadius="20" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
