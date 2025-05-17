@@ -24,4 +24,22 @@ public class FileDecryption
             }
         }
     }
+    
+    public static void DecryptFile(string inputFile, string outputFile)
+    {
+        using (Aes aesAlg = Aes.Create())
+        {
+            aesAlg.Key = Encoding.UTF8.GetBytes(UsersRoleExtensions.GG);
+            aesAlg.IV = new byte[16];
+
+            ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+            using (FileStream fsInput = new FileStream(inputFile, FileMode.Open))
+            using (CryptoStream cs = new CryptoStream(fsInput, decryptor, CryptoStreamMode.Read))
+            using (FileStream fsOutput = new FileStream(outputFile, FileMode.Create))
+            {
+                cs.CopyTo(fsOutput);
+            }
+        }
+    }
 }

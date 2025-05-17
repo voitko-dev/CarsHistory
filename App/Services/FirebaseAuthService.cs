@@ -97,11 +97,11 @@ public partial class FirebaseService
             { "password", password },
             { "returnSecureToken", true }
         };
-
+        
         using StringContent content = new StringContent(requestBody.ToString(), Encoding.UTF8, "application/json");
         HttpResponseMessage response =
             await client.PostAsync(
-                $"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={GetApiKey}", content);
+                $"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={GetApiKey()}", content);
         string responseContent = await response.Content.ReadAsStringAsync();
 
         if (response.IsSuccessStatusCode)

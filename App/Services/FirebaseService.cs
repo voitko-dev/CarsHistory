@@ -1,9 +1,11 @@
-﻿using CarsHistory.Extentions;
+﻿using System.IO;
+using CarsHistory.Extentions;
 using CarsHistory.Items;
 using FirebaseAdmin;
 using FirebaseAdmin.Auth;
 using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Firestore;
+using Newtonsoft.Json.Linq;
 
 namespace CarsHistory.Services;
 
@@ -21,15 +23,29 @@ public partial class FirebaseService
 
     private FirebaseService()
     {
-        string decryptedJson = FileDecryption.DecryptFile(encryptedFilePath);
-
-        firestoreDb = FirestoreDb.Create("cars-history");
-        firebaseApp = FirebaseApp.Create(new AppOptions()
+        string credentialsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "empty.json");
+    
+        try
         {
-            Credential = GoogleCredential.FromJson(decryptedJson),
-        });
+            FileDecryption.DecryptFile(encryptedFilePath, credentialsPath);
+            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", credentialsPath);
         
-        auth = FirebaseAuth.GetAuth(firebaseApp);
+            firebaseApp = FirebaseApp.Create(new AppOptions()
+            {
+                Credential = GoogleCredential.FromFile(credentialsPath),
+            });
+        
+            firestoreDb = FirestoreDb.Create("cars-history");
+            auth = FirebaseAuth.GetAuth(firebaseApp);
+        }
+        finally
+        {
+            if (File.Exists(credentialsPath))
+            {
+                File.WriteAllText(credentialsPath, string.Empty);
+            }
+        }
+
     }
     
     public static FirebaseService GetInstance()
@@ -39,7 +55,7 @@ public partial class FirebaseService
     
     public async Task AddCarAsync(Car car)
     {
-        var carRef = firestoreDb.Collection("cars").Document();  // Створюємо новий документ в колекції "cars"
+        var carRef = firestoreDb.Collection("cars").Document();
         await carRef.SetAsync(car);
         
         Console.WriteLine($"Car added with ID: {carRef.Id}");
