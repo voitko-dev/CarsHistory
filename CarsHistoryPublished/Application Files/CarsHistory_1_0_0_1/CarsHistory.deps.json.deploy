@@ -1,0 +1,1122 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "CarsHistory/2.6": {
+        "dependencies": {
+          "Extended.Wpf.Toolkit": "4.7.25104.5739",
+          "Firebase.Database": "1.0.0",
+          "FirebaseAdmin": "3.1.0",
+          "FirebaseAuthentication.WPF": "4.1.0",
+          "Google.Cloud.Firestore": "3.10.0",
+          "Microsoft.Extensions.Configuration.Json": "10.0.0-preview.4.25258.110",
+          "OxyPlot.Wpf": "2.2.0",
+          "OxyPlot.Wpf.Shared": "2.2.0"
+        },
+        "runtime": {
+          "CarsHistory.dll": {}
+        }
+      },
+      "Extended.Wpf.Toolkit/4.7.25104.5739": {
+        "runtime": {
+          "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.Aero.dll": {
+            "assemblyVersion": "4.7.0.0",
+            "fileVersion": "4.7.0.0"
+          },
+          "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.Metro.dll": {
+            "assemblyVersion": "4.7.0.0",
+            "fileVersion": "4.7.0.0"
+          },
+          "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.VS2010.dll": {
+            "assemblyVersion": "4.7.0.0",
+            "fileVersion": "4.7.0.0"
+          },
+          "lib/net5.0/Xceed.Wpf.AvalonDock.dll": {
+            "assemblyVersion": "4.7.0.0",
+            "fileVersion": "4.7.0.0"
+          },
+          "lib/net5.0/Xceed.Wpf.Toolkit.dll": {
+            "assemblyVersion": "4.7.0.0",
+            "fileVersion": "4.7.0.0"
+          }
+        },
+        "resources": {
+          "lib/net5.0/cs-CZ/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "cs-CZ"
+          },
+          "lib/net5.0/de/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net5.0/es/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net5.0/fr/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net5.0/hu/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "hu"
+          },
+          "lib/net5.0/it/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net5.0/ja-JP/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "ja-JP"
+          },
+          "lib/net5.0/pt-BR/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net5.0/ro/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "ro"
+          },
+          "lib/net5.0/ru/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net5.0/sv/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "sv"
+          },
+          "lib/net5.0/zh-Hans/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "zh-Hans"
+          }
+        }
+      },
+      "Firebase.Database/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3",
+          "Rx-Main": "2.2.5"
+        },
+        "runtime": {
+          "lib/portable45-net45+win8+wpa81/Firebase.Database.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "FirebaseAdmin/3.1.0": {
+        "dependencies": {
+          "Google.Api.Gax.Rest": "4.8.0",
+          "Google.Apis.Auth": "1.68.0",
+          "System.Collections.Immutable": "8.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/FirebaseAdmin.dll": {
+            "assemblyVersion": "3.1.0.0",
+            "fileVersion": "3.1.0.0"
+          }
+        }
+      },
+      "FirebaseAuthentication.net/4.1.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "assemblyVersion": "4.1.0.0",
+            "fileVersion": "4.1.0.0"
+          }
+        }
+      },
+      "FirebaseAuthentication.WPF/4.1.0": {
+        "dependencies": {
+          "FirebaseAuthentication.net": "4.1.0",
+          "Microsoft.Web.WebView2": "1.0.1462.37"
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/Firebase.Auth.UI.WPF.dll": {
+            "assemblyVersion": "4.1.0.0",
+            "fileVersion": "4.1.0.0"
+          },
+          "lib/net6.0-windows7.0/Firebase.Auth.UI.dll": {
+            "assemblyVersion": "4.1.0.0",
+            "fileVersion": "4.1.0.0"
+          }
+        },
+        "resources": {
+          "lib/net6.0-windows7.0/ar/Firebase.Auth.UI.resources.dll": {
+            "locale": "ar"
+          },
+          "lib/net6.0-windows7.0/bg/Firebase.Auth.UI.resources.dll": {
+            "locale": "bg"
+          },
+          "lib/net6.0-windows7.0/ca/Firebase.Auth.UI.resources.dll": {
+            "locale": "ca"
+          },
+          "lib/net6.0-windows7.0/cs/Firebase.Auth.UI.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net6.0-windows7.0/da/Firebase.Auth.UI.resources.dll": {
+            "locale": "da"
+          },
+          "lib/net6.0-windows7.0/de/Firebase.Auth.UI.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net6.0-windows7.0/el/Firebase.Auth.UI.resources.dll": {
+            "locale": "el"
+          },
+          "lib/net6.0-windows7.0/es/Firebase.Auth.UI.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net6.0-windows7.0/fa/Firebase.Auth.UI.resources.dll": {
+            "locale": "fa"
+          },
+          "lib/net6.0-windows7.0/fi/Firebase.Auth.UI.resources.dll": {
+            "locale": "fi"
+          },
+          "lib/net6.0-windows7.0/fil/Firebase.Auth.UI.resources.dll": {
+            "locale": "fil"
+          },
+          "lib/net6.0-windows7.0/fr/Firebase.Auth.UI.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net6.0-windows7.0/hi/Firebase.Auth.UI.resources.dll": {
+            "locale": "hi"
+          },
+          "lib/net6.0-windows7.0/hr/Firebase.Auth.UI.resources.dll": {
+            "locale": "hr"
+          },
+          "lib/net6.0-windows7.0/hu/Firebase.Auth.UI.resources.dll": {
+            "locale": "hu"
+          },
+          "lib/net6.0-windows7.0/in/Firebase.Auth.UI.resources.dll": {
+            "locale": "in"
+          },
+          "lib/net6.0-windows7.0/it/Firebase.Auth.UI.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net6.0-windows7.0/iw/Firebase.Auth.UI.resources.dll": {
+            "locale": "iw"
+          },
+          "lib/net6.0-windows7.0/ja/Firebase.Auth.UI.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net6.0-windows7.0/ko/Firebase.Auth.UI.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net6.0-windows7.0/lt/Firebase.Auth.UI.resources.dll": {
+            "locale": "lt"
+          },
+          "lib/net6.0-windows7.0/lv/Firebase.Auth.UI.resources.dll": {
+            "locale": "lv"
+          },
+          "lib/net6.0-windows7.0/nl/Firebase.Auth.UI.resources.dll": {
+            "locale": "nl"
+          },
+          "lib/net6.0-windows7.0/no/Firebase.Auth.UI.resources.dll": {
+            "locale": "no"
+          },
+          "lib/net6.0-windows7.0/pl/Firebase.Auth.UI.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net6.0-windows7.0/pt/Firebase.Auth.UI.resources.dll": {
+            "locale": "pt"
+          },
+          "lib/net6.0-windows7.0/ro/Firebase.Auth.UI.resources.dll": {
+            "locale": "ro"
+          },
+          "lib/net6.0-windows7.0/ru/Firebase.Auth.UI.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net6.0-windows7.0/sk/Firebase.Auth.UI.resources.dll": {
+            "locale": "sk"
+          },
+          "lib/net6.0-windows7.0/sl/Firebase.Auth.UI.resources.dll": {
+            "locale": "sl"
+          },
+          "lib/net6.0-windows7.0/sr-cyrl/Firebase.Auth.UI.resources.dll": {
+            "locale": "sr-Cyrl"
+          },
+          "lib/net6.0-windows7.0/sv/Firebase.Auth.UI.resources.dll": {
+            "locale": "sv"
+          },
+          "lib/net6.0-windows7.0/th/Firebase.Auth.UI.resources.dll": {
+            "locale": "th"
+          },
+          "lib/net6.0-windows7.0/tr/Firebase.Auth.UI.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net6.0-windows7.0/uk/Firebase.Auth.UI.resources.dll": {
+            "locale": "uk"
+          },
+          "lib/net6.0-windows7.0/ur/Firebase.Auth.UI.resources.dll": {
+            "locale": "ur"
+          },
+          "lib/net6.0-windows7.0/vi/Firebase.Auth.UI.resources.dll": {
+            "locale": "vi"
+          },
+          "lib/net6.0-windows7.0/zh/Firebase.Auth.UI.resources.dll": {
+            "locale": "zh"
+          }
+        }
+      },
+      "Google.Api.CommonProtos/2.16.0": {
+        "dependencies": {
+          "Google.Protobuf": "3.28.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Api.CommonProtos.dll": {
+            "assemblyVersion": "2.16.0.0",
+            "fileVersion": "2.16.0.0"
+          }
+        }
+      },
+      "Google.Api.Gax/4.9.0": {
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "6.0.0",
+          "Newtonsoft.Json": "13.0.3",
+          "System.Diagnostics.DiagnosticSource": "6.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Api.Gax.dll": {
+            "assemblyVersion": "4.9.0.0",
+            "fileVersion": "4.9.0.0"
+          }
+        }
+      },
+      "Google.Api.Gax.Grpc/4.9.0": {
+        "dependencies": {
+          "Google.Api.CommonProtos": "2.16.0",
+          "Google.Api.Gax": "4.9.0",
+          "Google.Apis.Auth": "1.68.0",
+          "Grpc.Auth": "2.66.0",
+          "Grpc.Core.Api": "2.66.0",
+          "Grpc.Net.Client": "2.66.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Api.Gax.Grpc.dll": {
+            "assemblyVersion": "4.9.0.0",
+            "fileVersion": "4.9.0.0"
+          }
+        }
+      },
+      "Google.Api.Gax.Rest/4.8.0": {
+        "dependencies": {
+          "Google.Api.Gax": "4.9.0",
+          "Google.Apis.Auth": "1.68.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Api.Gax.Rest.dll": {
+            "assemblyVersion": "4.8.0.0",
+            "fileVersion": "4.8.0.0"
+          }
+        }
+      },
+      "Google.Apis/1.68.0": {
+        "dependencies": {
+          "Google.Apis.Core": "1.68.0"
+        },
+        "runtime": {
+          "lib/net6.0/Google.Apis.dll": {
+            "assemblyVersion": "1.68.0.0",
+            "fileVersion": "1.68.0.0"
+          }
+        }
+      },
+      "Google.Apis.Auth/1.68.0": {
+        "dependencies": {
+          "Google.Apis": "1.68.0",
+          "Google.Apis.Core": "1.68.0",
+          "System.Management": "7.0.2"
+        },
+        "runtime": {
+          "lib/net6.0/Google.Apis.Auth.dll": {
+            "assemblyVersion": "1.68.0.0",
+            "fileVersion": "1.68.0.0"
+          }
+        }
+      },
+      "Google.Apis.Core/1.68.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/net6.0/Google.Apis.Core.dll": {
+            "assemblyVersion": "1.68.0.0",
+            "fileVersion": "1.68.0.0"
+          }
+        }
+      },
+      "Google.Cloud.Firestore/3.10.0": {
+        "dependencies": {
+          "Google.Cloud.Firestore.V1": "3.10.0",
+          "System.Collections.Immutable": "8.0.0",
+          "System.Linq.Async": "6.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Cloud.Firestore.dll": {
+            "assemblyVersion": "3.10.0.0",
+            "fileVersion": "3.10.0.0"
+          }
+        }
+      },
+      "Google.Cloud.Firestore.V1/3.10.0": {
+        "dependencies": {
+          "Google.Api.Gax.Grpc": "4.9.0",
+          "Google.Cloud.Location": "2.3.0",
+          "Google.LongRunning": "3.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Cloud.Firestore.V1.dll": {
+            "assemblyVersion": "3.10.0.0",
+            "fileVersion": "3.10.0.0"
+          }
+        }
+      },
+      "Google.Cloud.Location/2.3.0": {
+        "dependencies": {
+          "Google.Api.Gax.Grpc": "4.9.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Cloud.Location.dll": {
+            "assemblyVersion": "2.3.0.0",
+            "fileVersion": "2.3.0.0"
+          }
+        }
+      },
+      "Google.LongRunning/3.3.0": {
+        "dependencies": {
+          "Google.Api.Gax.Grpc": "4.9.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.LongRunning.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.0.0"
+          }
+        }
+      },
+      "Google.Protobuf/3.28.2": {
+        "runtime": {
+          "lib/net5.0/Google.Protobuf.dll": {
+            "assemblyVersion": "3.28.2.0",
+            "fileVersion": "3.28.2.0"
+          }
+        }
+      },
+      "Grpc.Auth/2.66.0": {
+        "dependencies": {
+          "Google.Apis.Auth": "1.68.0",
+          "Grpc.Core.Api": "2.66.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Grpc.Auth.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.66.0.0"
+          }
+        }
+      },
+      "Grpc.Core.Api/2.66.0": {
+        "runtime": {
+          "lib/netstandard2.1/Grpc.Core.Api.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.66.0.0"
+          }
+        }
+      },
+      "Grpc.Net.Client/2.66.0": {
+        "dependencies": {
+          "Grpc.Net.Common": "2.66.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/Grpc.Net.Client.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.66.0.0"
+          }
+        }
+      },
+      "Grpc.Net.Common/2.66.0": {
+        "dependencies": {
+          "Grpc.Core.Api": "2.66.0"
+        },
+        "runtime": {
+          "lib/net8.0/Grpc.Net.Common.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.66.0.0"
+          }
+        }
+      },
+      "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "Microsoft.Extensions.Configuration/10.0.0-preview.4.25258.110": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "10.0.0-preview.4.25258.110",
+          "Microsoft.Extensions.Primitives": "10.0.0-preview.4.25258.110"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Configuration.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.25910"
+          }
+        }
+      },
+      "Microsoft.Extensions.Configuration.Abstractions/10.0.0-preview.4.25258.110": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "10.0.0-preview.4.25258.110"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.25910"
+          }
+        }
+      },
+      "Microsoft.Extensions.Configuration.FileExtensions/10.0.0-preview.4.25258.110": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "10.0.0-preview.4.25258.110",
+          "Microsoft.Extensions.Configuration.Abstractions": "10.0.0-preview.4.25258.110",
+          "Microsoft.Extensions.FileProviders.Abstractions": "10.0.0-preview.4.25258.110",
+          "Microsoft.Extensions.FileProviders.Physical": "10.0.0-preview.4.25258.110",
+          "Microsoft.Extensions.Primitives": "10.0.0-preview.4.25258.110"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Configuration.FileExtensions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.25910"
+          }
+        }
+      },
+      "Microsoft.Extensions.Configuration.Json/10.0.0-preview.4.25258.110": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "10.0.0-preview.4.25258.110",
+          "Microsoft.Extensions.Configuration.Abstractions": "10.0.0-preview.4.25258.110",
+          "Microsoft.Extensions.Configuration.FileExtensions": "10.0.0-preview.4.25258.110",
+          "Microsoft.Extensions.FileProviders.Abstractions": "10.0.0-preview.4.25258.110",
+          "System.Text.Json": "10.0.0-preview.4.25258.110"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Configuration.Json.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.25910"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "Microsoft.Extensions.FileProviders.Abstractions/10.0.0-preview.4.25258.110": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "10.0.0-preview.4.25258.110"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.FileProviders.Abstractions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.25910"
+          }
+        }
+      },
+      "Microsoft.Extensions.FileProviders.Physical/10.0.0-preview.4.25258.110": {
+        "dependencies": {
+          "Microsoft.Extensions.FileProviders.Abstractions": "10.0.0-preview.4.25258.110",
+          "Microsoft.Extensions.FileSystemGlobbing": "10.0.0-preview.4.25258.110",
+          "Microsoft.Extensions.Primitives": "10.0.0-preview.4.25258.110"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.FileProviders.Physical.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.25910"
+          }
+        }
+      },
+      "Microsoft.Extensions.FileSystemGlobbing/10.0.0-preview.4.25258.110": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.FileSystemGlobbing.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.25910"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "Microsoft.Extensions.Primitives/10.0.0-preview.4.25258.110": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Primitives.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.25910"
+          }
+        }
+      },
+      "Microsoft.Web.WebView2/1.0.1462.37": {
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Core.dll": {
+            "assemblyVersion": "1.0.1462.37",
+            "fileVersion": "1.0.1462.37"
+          },
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.WinForms.dll": {
+            "assemblyVersion": "1.0.1462.37",
+            "fileVersion": "1.0.1462.37"
+          },
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Wpf.dll": {
+            "assemblyVersion": "1.0.1462.37",
+            "fileVersion": "1.0.1462.37"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/WebView2Loader.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "1.0.1462.37"
+          },
+          "runtimes/win-x64/native/WebView2Loader.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.0.1462.37"
+          },
+          "runtimes/win-x86/native/WebView2Loader.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.0.1462.37"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.3": {
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.3.27908"
+          }
+        }
+      },
+      "OxyPlot.Core/2.2.0": {
+        "runtime": {
+          "lib/net8.0/OxyPlot.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.0"
+          }
+        }
+      },
+      "OxyPlot.Wpf/2.2.0": {
+        "dependencies": {
+          "OxyPlot.Core": "2.2.0",
+          "OxyPlot.Wpf.Shared": "2.2.0"
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/OxyPlot.Wpf.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.0"
+          }
+        }
+      },
+      "OxyPlot.Wpf.Shared/2.2.0": {
+        "dependencies": {
+          "OxyPlot.Core": "2.2.0"
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/OxyPlot.Wpf.Shared.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.0"
+          }
+        }
+      },
+      "Rx-Core/2.2.5": {
+        "dependencies": {
+          "Rx-Interfaces": "2.2.5"
+        },
+        "runtime": {
+          "lib/net45/System.Reactive.Core.dll": {
+            "assemblyVersion": "2.2.5.0",
+            "fileVersion": "2.2.5.40722"
+          }
+        }
+      },
+      "Rx-Interfaces/2.2.5": {
+        "runtime": {
+          "lib/net45/System.Reactive.Interfaces.dll": {
+            "assemblyVersion": "2.2.5.0",
+            "fileVersion": "2.2.5.40722"
+          }
+        }
+      },
+      "Rx-Linq/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "runtime": {
+          "lib/net45/System.Reactive.Linq.dll": {
+            "assemblyVersion": "2.2.5.0",
+            "fileVersion": "2.2.5.40722"
+          }
+        }
+      },
+      "Rx-Main/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5",
+          "Rx-Linq": "2.2.5",
+          "Rx-PlatformServices": "2.2.5"
+        }
+      },
+      "Rx-PlatformServices/2.2.5": {
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "runtime": {
+          "lib/net45/System.Reactive.PlatformServices.dll": {
+            "assemblyVersion": "2.2.5.0",
+            "fileVersion": "2.2.5.40722"
+          }
+        }
+      },
+      "System.CodeDom/7.0.0": {},
+      "System.Collections.Immutable/8.0.0": {},
+      "System.Diagnostics.DiagnosticSource/6.0.1": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        }
+      },
+      "System.IO.Pipelines/10.0.0-preview.4.25258.110": {
+        "runtime": {
+          "lib/net8.0/System.IO.Pipelines.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.25910"
+          }
+        }
+      },
+      "System.Linq.Async/6.0.1": {
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/System.Linq.Async.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1.35981"
+          }
+        }
+      },
+      "System.Management/7.0.2": {
+        "dependencies": {
+          "System.CodeDom": "7.0.0"
+        },
+        "runtime": {
+          "lib/net7.0/System.Management.dll": {
+            "assemblyVersion": "7.0.0.2",
+            "fileVersion": "7.0.723.27404"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net7.0/System.Management.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "7.0.0.2",
+            "fileVersion": "7.0.723.27404"
+          }
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
+      "System.Text.Encodings.Web/10.0.0-preview.4.25258.110": {
+        "runtime": {
+          "lib/net8.0/System.Text.Encodings.Web.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.25910"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll": {
+            "rid": "browser",
+            "assetType": "runtime",
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.25910"
+          }
+        }
+      },
+      "System.Text.Json/10.0.0-preview.4.25258.110": {
+        "dependencies": {
+          "System.IO.Pipelines": "10.0.0-preview.4.25258.110",
+          "System.Text.Encodings.Web": "10.0.0-preview.4.25258.110"
+        },
+        "runtime": {
+          "lib/net8.0/System.Text.Json.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.25910"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CarsHistory/2.6": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Extended.Wpf.Toolkit/4.7.25104.5739": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-x6fCMLeExVZjyPl6f9/NRITW4uzT3xBZA40CBWA9YlH4/w6rKzsIeTDwYvavdmJLrl43p0LIFSQChISCnTSR6Q==",
+      "path": "extended.wpf.toolkit/4.7.25104.5739",
+      "hashPath": "extended.wpf.toolkit.4.7.25104.5739.nupkg.sha512"
+    },
+    "Firebase.Database/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nEALT430lPZ86itiPiih9ndGG4ZV0sy5GaoVgzZTx5icqpFk/aHjIwMOpUqn7+Me0bDL6WOQnYlsnQcTD1t84g==",
+      "path": "firebase.database/1.0.0",
+      "hashPath": "firebase.database.1.0.0.nupkg.sha512"
+    },
+    "FirebaseAdmin/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QNafwBg5psTGKOIyo78sNYjJ9GI5z/TPqOgpyOOv+2nzeK8sVaIPT2eDpcgzpxcRcKbjISbel38cQH/pIHNeOA==",
+      "path": "firebaseadmin/3.1.0",
+      "hashPath": "firebaseadmin.3.1.0.nupkg.sha512"
+    },
+    "FirebaseAuthentication.net/4.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pShi5v9cvT5bUWZDm261lO4uxJHvzOvpj46YHrL3uCB1WBeyCIcpoVakAQ2xHTu1dpmV86/BzSNRpqIGNp860g==",
+      "path": "firebaseauthentication.net/4.1.0",
+      "hashPath": "firebaseauthentication.net.4.1.0.nupkg.sha512"
+    },
+    "FirebaseAuthentication.WPF/4.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xsanZEsk+wFjDnVVAzCtMmjxKHzMDddcCpBSkkUiHE8VWX/CQ55YPN+8kTDYIccdkkoNDaLiBgPK2ZVvBRhiVQ==",
+      "path": "firebaseauthentication.wpf/4.1.0",
+      "hashPath": "firebaseauthentication.wpf.4.1.0.nupkg.sha512"
+    },
+    "Google.Api.CommonProtos/2.16.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-37MuZrE9AAqHAdYgFLoTHydAiXDRriQZGVKEg6fr6ASnrY5GtauYXnQrGk5x2K3NmYzEXe+wkpaPVmxjb3NKjg==",
+      "path": "google.api.commonprotos/2.16.0",
+      "hashPath": "google.api.commonprotos.2.16.0.nupkg.sha512"
+    },
+    "Google.Api.Gax/4.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fjHHYcQ99u0ztqwT537rvVtJMdDy6G2VHBZ+F1cBjDGYNVZfrpk40DMQ/OpUGToT9ZGHVirhh3eJ73bw2ANVPQ==",
+      "path": "google.api.gax/4.9.0",
+      "hashPath": "google.api.gax.4.9.0.nupkg.sha512"
+    },
+    "Google.Api.Gax.Grpc/4.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ToCx/0cs+wJ9j7vzKRcPAKneJVZrz/s9JhW9QsFx1dar9WzTxawQZ8xTjyieSy8tY0UiYCL1qYkn/iRrklYnSA==",
+      "path": "google.api.gax.grpc/4.9.0",
+      "hashPath": "google.api.gax.grpc.4.9.0.nupkg.sha512"
+    },
+    "Google.Api.Gax.Rest/4.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zaA5LZ2VvGj/wwIzRB68swr7khi2kWNgqWvsB0fYtScIAl3kGkGtqiBcx63H1YLeKr5xau1866bFjTeReH6FSQ==",
+      "path": "google.api.gax.rest/4.8.0",
+      "hashPath": "google.api.gax.rest.4.8.0.nupkg.sha512"
+    },
+    "Google.Apis/1.68.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-s2MymhdpH+ybZNBeZ2J5uFgFHApBp+QXf9FjZSdM1lk/vx5VqIknJwnaWiuAzXxPrLEkesX0Q+UsiWn39yZ9zw==",
+      "path": "google.apis/1.68.0",
+      "hashPath": "google.apis.1.68.0.nupkg.sha512"
+    },
+    "Google.Apis.Auth/1.68.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hFx8Qz5bZ4w0hpnn4tSmZaaFpjAMsgVElZ+ZgVLUZ2r9i+AKcoVgwiNfv1pruNS5cCvpXqhKECbruBCfRezPHA==",
+      "path": "google.apis.auth/1.68.0",
+      "hashPath": "google.apis.auth.1.68.0.nupkg.sha512"
+    },
+    "Google.Apis.Core/1.68.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pAqwa6pfu53UXCR2b7A/PAPXeuVg6L1OFw38WckN27NU2+mf+KTjoEg2YGv/f0UyKxzz7DxF1urOTKg/6dTP9g==",
+      "path": "google.apis.core/1.68.0",
+      "hashPath": "google.apis.core.1.68.0.nupkg.sha512"
+    },
+    "Google.Cloud.Firestore/3.10.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-euC8WgTjtpV9mCAqNrg81Zs0ebW4kKcZwXTUCRnhLHHND2+DAe9q+z/SwsszK1kgTwDTKv0sW5O8qPriR+iw6w==",
+      "path": "google.cloud.firestore/3.10.0",
+      "hashPath": "google.cloud.firestore.3.10.0.nupkg.sha512"
+    },
+    "Google.Cloud.Firestore.V1/3.10.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lyk4HmErTGYRqyP2hmPMZT0S39RnkRwqLsY4AHEeGefR4JbLcSN+4MzSOMEu18nCYcVN0yYIYVLmNE5dyIduHQ==",
+      "path": "google.cloud.firestore.v1/3.10.0",
+      "hashPath": "google.cloud.firestore.v1.3.10.0.nupkg.sha512"
+    },
+    "Google.Cloud.Location/2.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ABQ4EM7FsOM7tx0cmlkZmHFqH1LeCf4teWPM26UT7mZJzlH4Pk8HUcyi/xEFe3l6LanNFCTHbKT+eOlQ/axkJg==",
+      "path": "google.cloud.location/2.3.0",
+      "hashPath": "google.cloud.location.2.3.0.nupkg.sha512"
+    },
+    "Google.LongRunning/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-F2SZ83Jo466Wj/s1Z7QhIAmWBXxJZQyXZpcx0P8BR7d6s0FAj67vQjeUPESSJcvsy8AqYiYBhkUr2YpZhTQeHg==",
+      "path": "google.longrunning/3.3.0",
+      "hashPath": "google.longrunning.3.3.0.nupkg.sha512"
+    },
+    "Google.Protobuf/3.28.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Z86ZKAB+v1B/m0LTM+EVamvZlYw/g3VND3/Gs4M/+aDIxa2JE9YPKjDxTpf0gv2sh26hrve3eI03brxBmzn92g==",
+      "path": "google.protobuf/3.28.2",
+      "hashPath": "google.protobuf.3.28.2.nupkg.sha512"
+    },
+    "Grpc.Auth/2.66.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FRQlhMAcHf0GjAXIfhN6RydfZncLLXNNTOtpLL1bt57kp59vu40faW+dr6Vwl7ef/IUFfF38aiB5jvhAA/9Aow==",
+      "path": "grpc.auth/2.66.0",
+      "hashPath": "grpc.auth.2.66.0.nupkg.sha512"
+    },
+    "Grpc.Core.Api/2.66.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HsjsQVAHe4hqP4t4rpUnmq+MZvPdyrlPsWF4T5fbMvyP3o/lMV+KVJfDlaNH8+v0aGQTVT3EsDFufbhaWb52cw==",
+      "path": "grpc.core.api/2.66.0",
+      "hashPath": "grpc.core.api.2.66.0.nupkg.sha512"
+    },
+    "Grpc.Net.Client/2.66.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GwkSsssXFgN9+M2U+UQWdErf61sn1iqgP+2NRBlDXATcP9vlxda0wySxd/eIL8U522+SnyFNUXlvQ5tAzGk9cA==",
+      "path": "grpc.net.client/2.66.0",
+      "hashPath": "grpc.net.client.2.66.0.nupkg.sha512"
+    },
+    "Grpc.Net.Common/2.66.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YJpQpIvpo0HKlsG6SHwaieyji08qfv0DdEDIewCAA0egQY08637sHOj1netLGUhzBEsCqlGC3e92TZ2uqhxnvw==",
+      "path": "grpc.net.common/2.66.0",
+      "hashPath": "grpc.net.common.2.66.0.nupkg.sha512"
+    },
+    "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UcSjPsst+DfAdJGVDsu346FX0ci0ah+lw3WRtn18NUwEqRt70HaOQ7lI72vy3+1LxtqI3T5GWwV39rQSrCzAeg==",
+      "path": "microsoft.bcl.asyncinterfaces/6.0.0",
+      "hashPath": "microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Configuration/10.0.0-preview.4.25258.110": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-l7/T9aX3JrTSx/LR8wjxU+6h13gzBIF4tGg64D+Oo+41YgHuS8Cm8+QModHs/m402hAgz9qk4XiT0Ff6b8UAaA==",
+      "path": "microsoft.extensions.configuration/10.0.0-preview.4.25258.110",
+      "hashPath": "microsoft.extensions.configuration.10.0.0-preview.4.25258.110.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Configuration.Abstractions/10.0.0-preview.4.25258.110": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MG9m9h5Ea/XUZn735it7DmOxZNk1xtljdZLYUIiGnduVI+xa3f7Xb3Dhzx+X1nlD8F6hyEFOUHnYWXB0Y6O4lw==",
+      "path": "microsoft.extensions.configuration.abstractions/10.0.0-preview.4.25258.110",
+      "hashPath": "microsoft.extensions.configuration.abstractions.10.0.0-preview.4.25258.110.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Configuration.FileExtensions/10.0.0-preview.4.25258.110": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ux7QHPgX2Bsd+cE9fQvDSYQ6WxYpkJexwJz1tDeUeOib29/H7HemgYofDHu+ZL3HbXlPbVRCD4syzhl8TQpUkQ==",
+      "path": "microsoft.extensions.configuration.fileextensions/10.0.0-preview.4.25258.110",
+      "hashPath": "microsoft.extensions.configuration.fileextensions.10.0.0-preview.4.25258.110.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Configuration.Json/10.0.0-preview.4.25258.110": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WeAl49iGalcQQnkHJEkYjdje/4fhr3D29aeLMNH4AFVD6T6TZ2KGRHmazZ21JyE+DThgtCoUvwfpODiNjkY3GA==",
+      "path": "microsoft.extensions.configuration.json/10.0.0-preview.4.25258.110",
+      "hashPath": "microsoft.extensions.configuration.json.10.0.0-preview.4.25258.110.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xlzi2IYREJH3/m6+lUrQlujzX8wDitm4QGnUu6kUXTQAWPuZY8i+ticFJbzfqaetLA6KR/rO6Ew/HuYD+bxifg==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/6.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.FileProviders.Abstractions/10.0.0-preview.4.25258.110": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vgCa7L9eVnullIbE6nezDmr7MahOIUefvKN1G5ORIjX9dcnZLlw9PeriqHQkS1xHCaeqDKob/XkFx86G0Gr2HQ==",
+      "path": "microsoft.extensions.fileproviders.abstractions/10.0.0-preview.4.25258.110",
+      "hashPath": "microsoft.extensions.fileproviders.abstractions.10.0.0-preview.4.25258.110.nupkg.sha512"
+    },
+    "Microsoft.Extensions.FileProviders.Physical/10.0.0-preview.4.25258.110": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SoEhizumgc3mn+h6Cz2ODiVuGS8/fAIMW2rbTiBg7AUwzmSy6zd5zN47IvOpgvR1f9mcbHTceRgxgAOv9/LewQ==",
+      "path": "microsoft.extensions.fileproviders.physical/10.0.0-preview.4.25258.110",
+      "hashPath": "microsoft.extensions.fileproviders.physical.10.0.0-preview.4.25258.110.nupkg.sha512"
+    },
+    "Microsoft.Extensions.FileSystemGlobbing/10.0.0-preview.4.25258.110": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XVvw2x5YRgvjfdjhIEEdcv/St6UFIXjGA9+IZexjdUCK/YF/ETJAu+5uwo8bfr9MupjL3FCESaSzNn/HUlAF+Q==",
+      "path": "microsoft.extensions.filesystemglobbing/10.0.0-preview.4.25258.110",
+      "hashPath": "microsoft.extensions.filesystemglobbing.10.0.0-preview.4.25258.110.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/HggWBbTwy8TgebGSX5DBZ24ndhzi93sHUBDvP1IxbZD7FDokYzdAr6+vbWGjw2XAfR2EJ1sfKUotpjHnFWPxA==",
+      "path": "microsoft.extensions.logging.abstractions/6.0.0",
+      "hashPath": "microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Primitives/10.0.0-preview.4.25258.110": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kG3cJqv8N7BtFSFVupnBFSymfLk2eSnDgpttAEw7bxndWliKDhAem8xrh0EvAvk2BVH5ivNIdWzv8w/tkNVwcQ==",
+      "path": "microsoft.extensions.primitives/10.0.0-preview.4.25258.110",
+      "hashPath": "microsoft.extensions.primitives.10.0.0-preview.4.25258.110.nupkg.sha512"
+    },
+    "Microsoft.Web.WebView2/1.0.1462.37": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-q1B5OWQBJxX4tTcG1JiwUOOPDAfgDwWx9ckEQoo/o55MwE4zeTuFeFv0ghTFr28hxlBSiMQ/6OzRQswyx2D7WA==",
+      "path": "microsoft.web.webview2/1.0.1462.37",
+      "hashPath": "microsoft.web.webview2.1.0.1462.37.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "path": "newtonsoft.json/13.0.3",
+      "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
+    },
+    "OxyPlot.Core/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QhXNdXR5FPpro/VoLx3BOp6AhQo7YrbfmWEZ9cgY+pnYM7RYORZjnu+aDMA8ka9A1r8hLkX//NbCPZNUv+l8qA==",
+      "path": "oxyplot.core/2.2.0",
+      "hashPath": "oxyplot.core.2.2.0.nupkg.sha512"
+    },
+    "OxyPlot.Wpf/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-69KzgsMWpJSZmeXZt07FwfV7B1D4CM1nl0MWMj4wjrCsb3USBMo32up1+fQIjxp5tHCPdGwX9VWhSxW8nsY7pQ==",
+      "path": "oxyplot.wpf/2.2.0",
+      "hashPath": "oxyplot.wpf.2.2.0.nupkg.sha512"
+    },
+    "OxyPlot.Wpf.Shared/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JoOD/feTOlKFmgXqeTNrl4Ze0i0L6WizPapNw9pXwot+cnI0qhFgYv3tFjlSdu51hZw0EgmcgeRXMtm5bkueYA==",
+      "path": "oxyplot.wpf.shared/2.2.0",
+      "hashPath": "oxyplot.wpf.shared.2.2.0.nupkg.sha512"
+    },
+    "Rx-Core/2.2.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DfWVTfW6tvRkkqpnRHKxPIvaRZyDJGADuqrE6J2nwejOQbLRWi0rNUwXkViDWz++25BGDy3iRE5OE6Dv8mJxYQ==",
+      "path": "rx-core/2.2.5",
+      "hashPath": "rx-core.2.2.5.nupkg.sha512"
+    },
+    "Rx-Interfaces/2.2.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FKtG2QfMIeUcfB7r3a89VoAiszX3DTvYETkpC6U0FzWpxRK/mcHyzYOsniDfag+NsDG0P1k1c8yNSefXKp3t2A==",
+      "path": "rx-interfaces/2.2.5",
+      "hashPath": "rx-interfaces.2.2.5.nupkg.sha512"
+    },
+    "Rx-Linq/2.2.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UTeCIu3cWPExxmTzdiVq7SalqTBhUaomBTaAC9LpYPoAopjlFwA3hjVWXoLkGlDc/44wqJemJuEwFP00KphiFg==",
+      "path": "rx-linq/2.2.5",
+      "hashPath": "rx-linq.2.2.5.nupkg.sha512"
+    },
+    "Rx-Main/2.2.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qdQ6qENEiLsp/LRdzZlLlodihWN8VDjwNfWa8c2ELjEHZgTdKzt1V4i61gkHVtFKZXe8Px6KupbMP3pZ+1tusQ==",
+      "path": "rx-main/2.2.5",
+      "hashPath": "rx-main.2.2.5.nupkg.sha512"
+    },
+    "Rx-PlatformServices/2.2.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pMnNEvJVjT+wuDib+W/bi5hhIYcre7dW5yxvKrJxnR4iKJ1VLA/dY2FTtjDriHGx7OeGn12lQewXlH2oHiWFPA==",
+      "path": "rx-platformservices/2.2.5",
+      "hashPath": "rx-platformservices.2.2.5.nupkg.sha512"
+    },
+    "System.CodeDom/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GLltyqEsE5/3IE+zYRP5sNa1l44qKl9v+bfdMcwg+M9qnQf47wK3H0SUR/T+3N4JEQXF3vV4CSuuo0rsg+nq2A==",
+      "path": "system.codedom/7.0.0",
+      "hashPath": "system.codedom.7.0.0.nupkg.sha512"
+    },
+    "System.Collections.Immutable/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AurL6Y5BA1WotzlEvVaIDpqzpIPvYnnldxru8oXJU2yFxFUy3+pNXjXd1ymO+RA0rq0+590Q8gaz2l3Sr7fmqg==",
+      "path": "system.collections.immutable/8.0.0",
+      "hashPath": "system.collections.immutable.8.0.0.nupkg.sha512"
+    },
+    "System.Diagnostics.DiagnosticSource/6.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KiLYDu2k2J82Q9BJpWiuQqCkFjRBWVq4jDzKKWawVi9KWzyD0XG3cmfX0vqTQlL14Wi9EufJrbL0+KCLTbqWiQ==",
+      "path": "system.diagnostics.diagnosticsource/6.0.1",
+      "hashPath": "system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512"
+    },
+    "System.IO.Pipelines/10.0.0-preview.4.25258.110": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bOUYGhsZdIIPN/e/fNlzkF4h+8rwK33HvhRGZ2D6VYLHxMBRUe02WniB7y3Y03djaJqrpnaOaoRwtWMhKQwvsQ==",
+      "path": "system.io.pipelines/10.0.0-preview.4.25258.110",
+      "hashPath": "system.io.pipelines.10.0.0-preview.4.25258.110.nupkg.sha512"
+    },
+    "System.Linq.Async/6.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0YhHcaroWpQ9UCot3Pizah7ryAzQhNvobLMSxeDIGmnXfkQn8u5owvpOH0K6EVB+z9L7u6Cc4W17Br/+jyttEQ==",
+      "path": "system.linq.async/6.0.1",
+      "hashPath": "system.linq.async.6.0.1.nupkg.sha512"
+    },
+    "System.Management/7.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/qEUN91mP/MUQmJnM5y5BdT7ZoPuVrtxnFlbJ8a3kBJGhe2wCzBfnPFtK2wTtEEcf3DMGR9J00GZZfg6HRI6yA==",
+      "path": "system.management/7.0.2",
+      "hashPath": "system.management.7.0.2.nupkg.sha512"
+    },
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    },
+    "System.Text.Encodings.Web/10.0.0-preview.4.25258.110": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-f35m5BPt2PH6dtwh9r23NwygADE5Xruisp8hvJE10iETYVCPuN+zZiaYM4hXRZWgkCDZ+Z4fVOWiNOD4YPT0yg==",
+      "path": "system.text.encodings.web/10.0.0-preview.4.25258.110",
+      "hashPath": "system.text.encodings.web.10.0.0-preview.4.25258.110.nupkg.sha512"
+    },
+    "System.Text.Json/10.0.0-preview.4.25258.110": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uf+2QjwtJJkthMZzAOcJsxIW0l5ENOzZG0pNcbSrBym0fYahH+y1N67FF9/Spn0+Gh3jdTl7L1l9N6snUON71g==",
+      "path": "system.text.json/10.0.0-preview.4.25258.110",
+      "hashPath": "system.text.json.10.0.0-preview.4.25258.110.nupkg.sha512"
+    }
+  }
+}
