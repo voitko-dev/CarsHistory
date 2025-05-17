@@ -38,6 +38,12 @@
       <Resource Include="Resources\Images\icon.ico">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
+      <None Update="cars-history.json.enc">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="appsettings.json.enc">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
