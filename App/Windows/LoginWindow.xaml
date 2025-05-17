@@ -196,7 +196,7 @@
                     </Button.Template>
 
                 </Button>
-                <TextBlock Name="ErrorTextBlock" Foreground="Red" Visibility="Collapsed" />
+                <TextBlock Name="ErrorTextBlock" Foreground="Red" Visibility="Collapsed" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
             </StackPanel>
         </StackPanel>
 

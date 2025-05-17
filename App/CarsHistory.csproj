@@ -16,6 +16,7 @@
       <PackageReference Include="FirebaseAdmin" Version="3.1.0" />
       <PackageReference Include="FirebaseAuthentication.WPF" Version="4.1.0" />
       <PackageReference Include="Google.Cloud.Firestore" Version="3.10.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.0-preview.4.25258.110" />
       <PackageReference Include="OxyPlot.Wpf" Version="2.2.0" />
       <PackageReference Include="OxyPlot.Wpf.Shared" Version="2.2.0" />
     </ItemGroup>
@@ -37,6 +38,9 @@
       <Resource Include="Resources\Images\icon.ico">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
+      <None Update="appsettings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
     <ItemGroup>

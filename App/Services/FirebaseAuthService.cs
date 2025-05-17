@@ -7,6 +7,7 @@ using CarsHistory.Extentions;
 using CarsHistory.Items;
 using FirebaseAdmin.Auth;
 using Google.Cloud.Firestore;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 
 namespace CarsHistory.Services;
@@ -16,7 +17,7 @@ public partial class FirebaseService
     private static string curUserName = String.Empty;
     private static string? curUserID = String.Empty;
     private static UsersRole curUserRole = UsersRole.None;
-    private static readonly string? apiKey = ConfigurationManager.AppSettings["FirebaseSettings:ApiKey"];
+    private static readonly string? apiKey = App.Configuration["FirebaseSettings:ApiKey"];
 
     public static async Task RegisterUserAsync(string email, string password, string role, string name)
     {
