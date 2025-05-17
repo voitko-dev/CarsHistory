@@ -17,17 +17,16 @@ public partial class FirebaseService
     public string CurUserName => curUserName;
     public string? CurUserId => curUserID;
     public UsersRole CurUserRole => curUserRole;
+    private string encryptedFilePath = AppDomain.CurrentDomain.BaseDirectory + @"cars-history.json.enc";
 
     private FirebaseService()
     {
-        string path = AppDomain.CurrentDomain.BaseDirectory + @"cars-history.json";
-        
-        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
-        
+        string decryptedJson = FileDecryption.DecryptFile(encryptedFilePath);
+
         firestoreDb = FirestoreDb.Create("cars-history");
         firebaseApp = FirebaseApp.Create(new AppOptions()
         {
-            Credential = GoogleCredential.FromFile(path),
+            Credential = GoogleCredential.FromJson(decryptedJson),
         });
         
         auth = FirebaseAuth.GetAuth(firebaseApp);

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Windows;
 using System.Globalization;
+using CarsHistory.Extentions;
 
 
 namespace CarsHistory;
@@ -10,18 +11,6 @@ namespace CarsHistory;
 /// </summary>
 public partial class App : Application
 {
-    public static IConfiguration Configuration { get; private set; }
-    
-    static App()
-    {
-        // Налаштування конфігурації
-        var builder = new ConfigurationBuilder()
-            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-
-        Configuration = builder.Build();
-    }
-    
     protected override void OnStartup(StartupEventArgs e)
     {
         CultureInfo culture = new CultureInfo("uk-UA");

@@ -17,7 +17,6 @@ public partial class FirebaseService
     private static string curUserName = String.Empty;
     private static string? curUserID = String.Empty;
     private static UsersRole curUserRole = UsersRole.None;
-    private static readonly string? apiKey = App.Configuration["FirebaseSettings:ApiKey"];
 
     public static async Task RegisterUserAsync(string email, string password, string role, string name)
     {
@@ -33,6 +32,14 @@ public partial class FirebaseService
         Console.WriteLine($"Successfully created new user with name: {name} and role: {role}");
     }
     
+    private static string? GetApiKey()
+    {
+        string decryptedJson = FileDecryption.DecryptFile(AppDomain.CurrentDomain.BaseDirectory + @"appsettings.json.enc");
+        
+        JObject config = JObject.Parse(decryptedJson);
+        return config["FirebaseSettings"]?["ApiKey"]?.ToString();
+    }
+    
     private static string GenerateColorFromUserName(string userName)
     {
         int hash = userName.GetHashCode();
@@ -45,14 +52,12 @@ public partial class FirebaseService
     
     public static async Task RegisterUserWithApproveAsync(string email, string password, string name)
     {
-        // Створення користувача через FirebaseAuth
         UserRecord? userRecord = await GetInstance().Auth.CreateUserAsync(new UserRecordArgs()
         {
             Email = email,
             Password = password
         });
-
-        // Збереження користувача в Firestore з роллю "pending"
+        
         DocumentReference? userRef = GetInstance().firestoreDb.Collection("users").Document(userRecord.Uid);
         await userRef.SetAsync(new { Role = "Pending", Email = email, Name = name, Color = GenerateColorFromUserName(name) });
 
@@ -96,7 +101,7 @@ public partial class FirebaseService
         using StringContent content = new StringContent(requestBody.ToString(), Encoding.UTF8, "application/json");
         HttpResponseMessage response =
             await client.PostAsync(
-                $"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={apiKey}", content);
+                $"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={GetApiKey}", content);
         string responseContent = await response.Content.ReadAsStringAsync();
 
         if (response.IsSuccessStatusCode)

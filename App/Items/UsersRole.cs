@@ -20,4 +20,6 @@ public static class UsersRoleExtensions
 
         return string.Equals(usersRole, UsersRole.Pending.ToString(), StringComparison.CurrentCultureIgnoreCase) ? UsersRole.Pending : UsersRole.None;
     }
+    
+    public static readonly string GG = "gkX5IOuIu6bIKDYSpFPSOigZIOO55IM5";
 }
