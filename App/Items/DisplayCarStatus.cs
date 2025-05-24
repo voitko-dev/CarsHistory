@@ -31,6 +31,7 @@ namespace CarsHistory.Items
                 { lastPersonChange = initialAuthor };
             _moneyInBank = carStatus.MoneyInBank ?? new FieldWithAuthor<DateTime?> { lastPersonChange = initialAuthor };
             _carPaid = carStatus.CarPaid ?? new FieldWithAuthor<DateTime?> { lastPersonChange = initialAuthor };
+            _comunicat = carStatus.Comunicat ?? new FieldWithAuthor<DateTime?> { lastPersonChange = initialAuthor };
             _documentsForSelection = carStatus.DocumentsForSelection ?? new FieldWithAuthor<DateTime?>
                 { lastPersonChange = initialAuthor };
             _carInLublin = carStatus.CarInLublin ?? new FieldWithAuthor<DateTime?> { lastPersonChange = initialAuthor };
@@ -71,6 +72,7 @@ namespace CarsHistory.Items
                 MoneyReceived = finalizeField(_moneyReceived, currentUserName),
                 MoneyInBank = finalizeField(_moneyInBank, currentUserName),
                 CarPaid = finalizeField(_carPaid, currentUserName),
+                Comunicat = finalizeField(_comunicat, currentUserName),
                 DocumentsForSelection = finalizeField(_documentsForSelection, currentUserName),
                 CarInLublin = finalizeField(_carInLublin, currentUserName),
                 CmrClosed = finalizeField(_cmrClosed, currentUserName),
@@ -196,6 +198,13 @@ namespace CarsHistory.Items
         {
             get => _carPaid;
             set => SetProperty(ref _carPaid, value);
+        }
+        
+        private FieldWithAuthor<DateTime?> _comunicat;
+        public FieldWithAuthor<DateTime?> Comunicat
+        {
+            get => _comunicat;
+            set => SetProperty(ref _comunicat, value);
         }
 
         private FieldWithAuthor<DateTime?> _documentsForSelection;

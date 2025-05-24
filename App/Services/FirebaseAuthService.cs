@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Net.Http;
 using System.Text;
 using CarsHistory.Converter;
@@ -7,7 +6,6 @@ using CarsHistory.Extentions;
 using CarsHistory.Items;
 using FirebaseAdmin.Auth;
 using Google.Cloud.Firestore;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 
 namespace CarsHistory.Services;

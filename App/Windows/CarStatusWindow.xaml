@@ -386,6 +386,23 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
+                
+                <DataGridTextColumn Header="Комунікате" Width="*">
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="Comunicat" Mode="TwoWay" StringFormat="dd.MM.yyyy"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.Converter>
+                                <converter:CarStatusValueConverter />
+                            </Binding.Converter>
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background"
+                                    Value="{Binding Comunicat, Converter={StaticResource CarStatusColorConverter}}" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
 
                 <!-- Editable CarCleared column -->
                 <DataGridTextColumn Header="Авто розмитнено" Width="*">

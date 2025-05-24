@@ -94,6 +94,14 @@ namespace CarsHistory.Items
             set => SetProperty(ref carPaid, value);
         }
         
+        private FieldWithAuthor<DateTime?> comunicat;
+        [FirestoreProperty("Comunicat", ConverterType = typeof(FieldWithAuthorConverter<DateTime?>))]
+        public FieldWithAuthor<DateTime?> Comunicat
+        {
+            get => comunicat;
+            set => SetProperty(ref comunicat, value);
+        }
+        
         private FieldWithAuthor<DateTime?> documentsForSelection;
         [FirestoreProperty("DocumentsForSelection", ConverterType = typeof(FieldWithAuthorConverter<DateTime?>))]
         public FieldWithAuthor<DateTime?> DocumentsForSelection
