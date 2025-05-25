@@ -14,7 +14,7 @@ namespace CarsHistory.Items
             _model = car.Model;
             _vin = car.VIN;
             _auction = carStatus.Auction;
-            _isCarPurchased = car.Purchased; // From Car object
+            _isCarPurchased = car.Purchased;
             _dateUpdated = carStatus.DateUpdated;
             _isSelectedForDeletion = carStatus.IsSelectedForDeletion;
             _generalLastPersonChange = carStatus.LastPersonChange;
@@ -52,7 +52,9 @@ namespace CarsHistory.Items
         {
             Func<FieldWithAuthor<DateTime?>, string, FieldWithAuthor<DateTime?>> finalizeField = (field, user) =>
             {
-                if (field == null) return new FieldWithAuthor<DateTime?> { lastPersonChange = user };
+                if (field == null) 
+                    return new FieldWithAuthor<DateTime?> { lastPersonChange = user };
+                
                 return new FieldWithAuthor<DateTime?>
                 {
                     fieldValue = field.fieldValue?.ToUtcSafe(true),

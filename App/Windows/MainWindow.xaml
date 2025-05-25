@@ -49,7 +49,7 @@
             </Button>
 
             <Button Name="btnFindCar"
-                    Content="Знайти авто"
+                    Content="Знайти авто в бд"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Width="150"
@@ -76,7 +76,6 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-
             </Button>
 
             <Button Name="btnCarStatus"
@@ -108,7 +107,37 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
+            </Button>
+            
+            <Button Name="btnNewCarSearch"
+                    Content="Статус пошуку авто"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Width="150"
+                    Height="30"
+                    Click="btnNewCarSearch_Click"
+                    Margin="10"
+                    Visibility="Visible">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FE6584"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
 
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF4C70"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
             </Button>
 
             <Button Name="btnDeleteCar"

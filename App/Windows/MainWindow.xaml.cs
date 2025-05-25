@@ -72,6 +72,12 @@ public partial class MainWindow : Window
         carStatusWindow.Show();
     }
     
+    private void btnNewCarSearch_Click(object sender, RoutedEventArgs e)
+    {
+        CarSearchWindow carSearchWindow = new CarSearchWindow();
+        carSearchWindow.Show();
+    }
+    
     private void btnFindCar_Click(object sender, RoutedEventArgs e)
     {
         FindCarWindow findCarWindow = new FindCarWindow();

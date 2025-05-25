@@ -10,8 +10,11 @@ public class CarStatusValueConverter : IValueConverter
 {
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is FieldWithAuthor<DateTime?> { fieldValue: not null } fieldWithAuthor) 
-            return fieldWithAuthor.fieldValue;
+        if (value is FieldWithAuthor<DateTime?> { fieldValue: not null } fieldWithAuthor)
+        {
+            DateTime localDateTime = fieldWithAuthor.fieldValue.Value.ToLocalTime();
+            return localDateTime;
+        }
 
         return "";
     }
@@ -23,8 +26,14 @@ public class CarStatusValueConverter : IValueConverter
 
         try
         {
-            var date = DateTime.ParseExact(data, "dd.MM.yyyy", CultureInfo.InvariantCulture);
-                
+            DateTime date;
+            if (data.Contains('/'))
+                //date = DateTime.ParseExact(data, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
+                date = DateTime.UtcNow;
+            else
+                date = DateTime.ParseExact(data, "dd.MM.yyyy", CultureInfo.InvariantCulture);
+
+            
             var fieldWithAuthor = new FieldWithAuthor<DateTime?>()
             {
                 fieldValue = date.ToUniversalTime(),
