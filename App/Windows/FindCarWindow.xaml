@@ -155,7 +155,8 @@
 
         <!-- Панель для таблиці результатів -->
         <DataGrid Grid.Row="1" Name="dataGridCars" AutoGenerateColumns="False" IsReadOnly="False" 
-                  BeginningEdit="dataGridCars_BeginningEdit" Margin="10,10,10,10" Foreground="Black" Cursor="Pen">
+                  BeginningEdit="dataGridCars_BeginningEdit" CellEditEnding="dataGridCars_CellEditEnding"
+                   Margin="10,10,10,10" Foreground="Black" Cursor="Pen">
             <DataGrid.Columns>
                 <!-- Створення стовпця для Id -->
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="70" />
@@ -230,14 +231,27 @@
                 <DataGridTextColumn Header="Author" IsReadOnly="True" Binding="{Binding Author}" Width="80" />
 
                 <!-- Створення стовпця для Comment -->
-                <DataGridTextColumn Header="Коментар" Binding="{Binding Comment}" IsReadOnly="False" Width="*">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="TextWrapping" Value="Wrap"/>
-                            <Setter Property="VerticalAlignment" Value="Top"/>
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
+                <DataGridTemplateColumn Header="Коментар" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="commentTextBlock" 
+                                       TextWrapping="Wrap" 
+                                       VerticalAlignment="Top" 
+                                       Padding="5" 
+                                       Loaded="CommentTextBlock_Loaded"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" 
+                                     TextWrapping="Wrap" 
+                                     AcceptsReturn="True" 
+                                     VerticalAlignment="Stretch" 
+                                     Padding="5"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
             
             <DataGrid.Resources>

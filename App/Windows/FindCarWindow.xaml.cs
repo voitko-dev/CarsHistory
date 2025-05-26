@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using CarsHistory.Converter;
 using CarsHistory.Extentions;
 using CarsHistory.Items;
 using CarsHistory.Services;
@@ -55,6 +56,54 @@ public partial class FindCarWindow : Window
         }
     }
 
+    private void CommentTextBlock_Loaded(object sender, RoutedEventArgs e)
+    {
+        if (sender is TextBlock textBlock)
+        {
+            var dataContext = textBlock.DataContext;
+            if (dataContext != null && dataContext is Car car)
+            {
+                string comment = car.Comment;
+                if (!string.IsNullOrEmpty(comment))
+                {
+                    UrlToHyperlinkConverter.ProcessTextForLinks(comment, textBlock);
+                }
+            }
+        }
+    }
+    
+    private void dataGridCars_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+    {
+        if (e.Column.Header.ToString() == "Коментар")
+        {
+            // Затримка оновлення для коректного рендерингу
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                var row = e.Row;
+                var cell = dataGridCars.Columns
+                    .Where(c => c.Header.ToString() == "Коментар")
+                    .Select(c => dataGridCars.Columns.IndexOf(c))
+                    .FirstOrDefault();
+                
+                if (cell >= 0)
+                {
+                    DataGridRow gridRow = (DataGridRow)dataGridCars.ItemContainerGenerator.ContainerFromItem(row.Item);
+                    if (gridRow != null)
+                    {
+                        DataGridCell gridCell = dataGridCars.GetCell(gridRow, cell);
+                        if (gridCell != null)
+                        {
+                            var presenter = gridCell.ContentTemplate.FindName("commentTextBlock", gridCell) as TextBlock;
+                            if (presenter != null && row.Item is Car car)
+                            {
+                                UrlToHyperlinkConverter.ProcessTextForLinks(car.Comment, presenter);
+                            }
+                        }
+                    }
+                }
+            }), System.Windows.Threading.DispatcherPriority.Background);
+        }
+    }
 
     private async void btnSearchCar_Click(object sender, RoutedEventArgs e)
     {
