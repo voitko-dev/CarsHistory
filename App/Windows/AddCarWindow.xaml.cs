@@ -38,7 +38,6 @@ public partial class AddCarWindow : Window
                 return localDateTime.ToUtcSafe();
             }
             
-            
             Car car = new Car
             {
                 Brand = txtBrand.Text,
@@ -62,10 +61,33 @@ public partial class AddCarWindow : Window
             
             await firebaseService.AddCarAsync(car);
             MessageBox.Show("Car added successfully!");
+            
+            ClearAllFields();
         }
         catch (Exception ex)
         {
             MessageBox.Show("Error: " + ex.Message);
         }
+    }
+    
+    private void ClearAllFields()
+    {
+        txtBrand.Clear();
+        txtModel.Clear();
+        txtPrice.Clear();
+        txtComment.Clear();
+        txtMileage.Clear();
+        txtEnginePower.Clear();
+        txtCustomsCosts.Clear();
+        txtVIN.Clear();
+        
+        dtpProductionDate.Value = null;
+        dtpAuctionDate.Value = null;
+
+        cmbFuelType.SelectedIndex = 0;
+        cmbTransmission.SelectedIndex = 0;
+        cmbCarFrom.SelectedIndex = 0;
+
+        cbPurchased.IsChecked = false;
     }
 }
