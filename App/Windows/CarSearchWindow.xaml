@@ -197,7 +197,7 @@
                                         Binding="{Binding IsSelectedForDeletion, UpdateSourceTrigger=PropertyChanged}"
                                         Width="60" />
 
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" IsReadOnly="True" Width="auto" />
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" IsReadOnly="True" Width="30" />
                 <DataGridTextColumn Header="Марка" Binding="{Binding Brand}" Width="auto" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Модель" Binding="{Binding Model}" Width="auto" IsReadOnly="True"/>      
                 <DataGridTextColumn Header="Група" Binding="{Binding Group}" Width="auto" />
