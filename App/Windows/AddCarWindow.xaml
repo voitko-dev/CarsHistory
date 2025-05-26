@@ -6,197 +6,192 @@
         WindowStartupLocation="CenterScreen"
         Icon="../Resources/Images/Logo.png"
         Title="Add New Car" Height="550" Width="450"
-        Background="#181735">
+        Background="#181735"
+        MinWidth="400" MinHeight="550">
 
-    <Grid>
-        <!-- WatermarkTextBox для введення марки -->
-        <StackPanel Orientation="Vertical" Margin="10">
-            <!-- Ряд 1 -->
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <toolkit:WatermarkTextBox Name="txtBrand" Width="200" Height="30" Margin="0,0,10,0"
-                                          Foreground="Azure" Watermark="Марка" Background="Transparent"
-                                          BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5"
-                                          CaretBrush="YellowGreen" />
-                <toolkit:WatermarkTextBox Name="txtModel" Width="200" Height="30"
-                                          Foreground="Azure" Watermark="Модель" Background="Transparent"
-                                          BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5"
-                                          CaretBrush="YellowGreen" />
-            </StackPanel>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Ряд 1: Марка і Модель -->
+        <toolkit:WatermarkTextBox Grid.Row="0" Grid.Column="0" Name="txtBrand" Height="30" Margin="0,5,5,5"
+                                  Foreground="Azure" Watermark="Марка" Background="Transparent"
+                                  BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5"
+                                  CaretBrush="YellowGreen" />
+        <toolkit:WatermarkTextBox Grid.Row="0" Grid.Column="1" Name="txtModel" Height="30" Margin="5,5,0,5"
+                                  Foreground="Azure" Watermark="Модель" Background="Transparent"
+                                  BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5"
+                                  CaretBrush="YellowGreen" />
 
-            <!-- Ряд 2 -->
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <toolkit:WatermarkTextBox Name="txtPrice" Width="200" Height="30" Margin="0,0,10,0"
-                                          Foreground="Azure" Watermark="Ціна" Background="Transparent"
-                                          BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5"
-                                          CaretBrush="YellowGreen" />
-                <toolkit:WatermarkTextBox Name="txtMileage" Width="200" Height="30"
-                                          Foreground="Azure" Watermark="Пробіг" Background="Transparent"
-                                          BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5"
-                                          CaretBrush="YellowGreen" />
-            </StackPanel>
+        <!-- Ряд 2: Ціна і Пробіг -->
+        <toolkit:WatermarkTextBox Grid.Row="1" Grid.Column="0" Name="txtPrice" Height="30" Margin="0,5,5,5"
+                                  Foreground="Azure" Watermark="Ціна" Background="Transparent"
+                                  BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5"
+                                  CaretBrush="YellowGreen" />
+        <toolkit:WatermarkTextBox Grid.Row="1" Grid.Column="1" Name="txtMileage" Height="30" Margin="5,5,0,5"
+                                  Foreground="Azure" Watermark="Пробіг" Background="Transparent"
+                                  BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5"
+                                  CaretBrush="YellowGreen" />
 
-            <!-- Ряд 3 -->
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <toolkit:WatermarkTextBox Name="txtEnginePower" Width="200" Height="30" Margin="0,0,10,0"
-                                          Foreground="Azure" Watermark="Потужність (кс)" Background="Transparent"
-                                          BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5"
-                                          CaretBrush="YellowGreen" />
-                <toolkit:WatermarkTextBox Name="txtCustomsCosts" Width="200" Height="30"
-                                          Foreground="Azure" Watermark="Вартість розмитнення"
-                                          Background="Transparent"
-                                          BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5"
-                                          CaretBrush="YellowGreen" />
-            </StackPanel>
+        <!-- Ряд 3: Потужність і Вартість розмитнення -->
+        <toolkit:WatermarkTextBox Grid.Row="2" Grid.Column="0" Name="txtEnginePower" Height="30" Margin="0,5,5,5"
+                                  Foreground="Azure" Watermark="Потужність (кс)" Background="Transparent"
+                                  BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5"
+                                  CaretBrush="YellowGreen" />
+        <toolkit:WatermarkTextBox Grid.Row="2" Grid.Column="1" Name="txtCustomsCosts" Height="30" Margin="5,5,0,5"
+                                  Foreground="Azure" Watermark="Вартість розмитнення" Background="Transparent"
+                                  BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5"
+                                  CaretBrush="YellowGreen" />
 
-            <!-- Ряд 4 -->
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <toolkit:WatermarkTextBox Name="txtVIN" Width="200" Height="30" Margin="0,0,10,0"
-                                          Foreground="Azure" Watermark="VIN" Background="Transparent"
-                                          BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5"
-                                          CaretBrush="YellowGreen" />
-                <toolkit:DateTimePicker Name="dtpProductionDate" Width="200" Height="30"
-                                        Format="Custom" FormatString="dd.MM.yyyy" Watermark="Дата виробництва"
-                                        BorderBrush="#FF4C70" Background="White" Foreground="Black"
-                                        BorderThickness="2" Padding="10,5" />
-            </StackPanel>
+        <!-- Ряд 4: VIN і Дата виробництва -->
+        <toolkit:WatermarkTextBox Grid.Row="3" Grid.Column="0" Name="txtVIN" Height="30" Margin="0,5,5,5"
+                                  Foreground="Azure" Watermark="VIN" Background="Transparent"
+                                  BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5"
+                                  CaretBrush="YellowGreen" />
+        <toolkit:DateTimePicker Grid.Row="3" Grid.Column="1" Name="dtpProductionDate" Height="30" Margin="5,5,0,5"
+                                Format="Custom" FormatString="dd.MM.yyyy" Watermark="Дата виробництва"
+                                BorderBrush="#FF4C70" Background="White" Foreground="Black"
+                                BorderThickness="2" Padding="10,5" />
 
-            <!-- Ряд 5 -->
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <toolkit:WatermarkComboBox Name="cmbFuelType" Width="200" Height="30" Margin="0,0,10,0"
-                                           Watermark="Тип палива"
-                                           Background="Transparent" BorderBrush="#FF4C70" BorderThickness="2"
-                                           Padding="10,5">
-                    <ComboBoxItem>Petrol</ComboBoxItem>
-                    <ComboBoxItem>Diesel</ComboBoxItem>
-                    <ComboBoxItem>Electric</ComboBoxItem>
-                </toolkit:WatermarkComboBox>
+        <!-- Ряд 5: Тип палива і Тип трансмісії -->
+        <toolkit:WatermarkComboBox Grid.Row="4" Grid.Column="0" Name="cmbFuelType" Height="30" Margin="0,5,5,5"
+                                   Watermark="Тип палива" Background="Transparent" 
+                                   BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5">
+            <ComboBoxItem>Petrol</ComboBoxItem>
+            <ComboBoxItem>Diesel</ComboBoxItem>
+            <ComboBoxItem>Electric</ComboBoxItem>
+        </toolkit:WatermarkComboBox>
+        <toolkit:WatermarkComboBox Grid.Row="4" Grid.Column="1" Name="cmbTransmission" Height="30" Margin="5,5,0,5"
+                                   Watermark="Тип трансмісії" Background="Transparent" 
+                                   BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5">
+            <ComboBoxItem>Manual</ComboBoxItem>
+            <ComboBoxItem>Automatic</ComboBoxItem>
+        </toolkit:WatermarkComboBox>
 
-                <toolkit:WatermarkComboBox Name="cmbTransmission" Width="200" Height="30" Watermark="Тип трансмісії"
-                                           Background="Transparent" BorderBrush="#FF4C70" BorderThickness="2"
-                                           Padding="10,5">
-                    <ComboBoxItem>Manual</ComboBoxItem>
-                    <ComboBoxItem>Automatic</ComboBoxItem>
-                </toolkit:WatermarkComboBox>
-            </StackPanel>
+        <!-- Ряд 6: Автомобіль з і Дата аукціону -->
+        <toolkit:WatermarkComboBox Grid.Row="5" Grid.Column="0" Name="cmbCarFrom" Height="30" Margin="0,5,5,5"
+                                   Watermark="Автомобіль з" Background="Transparent" 
+                                   BorderBrush="#FF4C70" BorderThickness="2" Padding="10,5">
+            <ComboBoxItem>Ukraine</ComboBoxItem>
+            <ComboBoxItem>Auctions</ComboBoxItem>
+        </toolkit:WatermarkComboBox>
+        <toolkit:DateTimePicker Grid.Row="5" Grid.Column="1" Name="dtpAuctionDate" Height="30" Margin="5,5,0,5"
+                                Format="Custom" FormatString="dd.MM.yyyy" Watermark="Дата аукціону"
+                                BorderBrush="#FF4C70" Background="White" Foreground="Black"
+                                BorderThickness="2" Padding="10,5" />
 
-            <!-- Ряд 6 -->
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <toolkit:WatermarkComboBox Name="cmbCarFrom" Width="200" Height="30" Margin="0,0,10,0"
-                                           Watermark="Автомобіль з"
-                                           Background="Transparent" BorderBrush="#FF4C70" BorderThickness="2"
-                                           Padding="10,5">
-                    <ComboBoxItem>Ukraine</ComboBoxItem>
-                    <ComboBoxItem>Auctions</ComboBoxItem>
-                </toolkit:WatermarkComboBox>
-
-                <toolkit:DateTimePicker Name="dtpAuctionDate" Width="200" Height="30"
-                                        Format="Custom" FormatString="dd.MM.yyyy" Watermark="Дата аукціону"
-                                        BorderBrush="#FF4C70" Background="White" Foreground="Black"
-                                        BorderThickness="2" Padding="10,5" />
-            </StackPanel>
-
-            <!-- Ряд 7 -->
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <CheckBox Name="cbPurchased" Width="200" Height="30" Margin="0,0,10,0"
-                          Background="Transparent" BorderBrush="#FF4C70" BorderThickness="2"
-                          Padding="10,5" Content="Куплено">
-                    <CheckBox.ContentTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="Куплено" FontSize="14" Foreground="White" />
-                        </DataTemplate>
-                    </CheckBox.ContentTemplate>
-                    <CheckBox.Style>
-                        <Style TargetType="CheckBox">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="CheckBox">
-                                        <Grid Background="{TemplateBinding Background}">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <Border x:Name="checkBoxBorder"
-                                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                                    Width="20" Height="20"
-                                                    VerticalAlignment="Center">
-                                                <Grid>
-                                                    <Path x:Name="optionMark"
-                                                          Data="M 0 0 L 5 5 M 5 0 L 0 5" Stroke="White"
-                                                          StrokeThickness="2"
-                                                          SnapsToDevicePixels="False"
-                                                          Visibility="Collapsed" />
-                                                    <Path x:Name="checkMark"
-                                                          Data="M1.5,6.5 L4.5,9.5 L10.5,3.5" Stroke="White"
-                                                          StrokeThickness="2"
-                                                          SnapsToDevicePixels="False"
-                                                          Visibility="Collapsed" />
-                                                </Grid>
-                                            </Border>
-                                            <ContentPresenter Grid.Column="1"
-                                                              Margin="{TemplateBinding Padding}"
-                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                              RecognizesAccessKey="True"
-                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                              Content="{TemplateBinding Content}"
-                                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                              ContentStringFormat="{TemplateBinding ContentStringFormat}" />
+        <!-- Ряд 7: Куплено -->
+        <CheckBox Grid.Row="6" Grid.Column="0" Name="cbPurchased" Height="30" Margin="0,5,5,5"
+                  Background="Transparent" BorderBrush="#FF4C70" BorderThickness="2"
+                  Padding="10,5" Content="Куплено">
+            <CheckBox.ContentTemplate>
+                <DataTemplate>
+                    <TextBlock Text="Куплено" FontSize="14" Foreground="White" />
+                </DataTemplate>
+            </CheckBox.ContentTemplate>
+            <CheckBox.Style>
+                <Style TargetType="CheckBox">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="CheckBox">
+                                <Grid Background="{TemplateBinding Background}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="checkBoxBorder"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Width="20" Height="20"
+                                            VerticalAlignment="Center">
+                                        <Grid>
+                                            <Path x:Name="optionMark"
+                                                  Data="M 0 0 L 5 5 M 5 0 L 0 5" Stroke="White"
+                                                  StrokeThickness="2"
+                                                  SnapsToDevicePixels="False"
+                                                  Visibility="Collapsed" />
+                                            <Path x:Name="checkMark"
+                                                  Data="M1.5,6.5 L4.5,9.5 L10.5,3.5" Stroke="White"
+                                                  StrokeThickness="2"
+                                                  SnapsToDevicePixels="False"
+                                                  Visibility="Collapsed" />
                                         </Grid>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsChecked" Value="True">
-                                                <Setter TargetName="checkMark" Property="Visibility" Value="Visible" />
-                                            </Trigger>
-                                            <Trigger Property="IsChecked" Value="{x:Null}">
-                                                <Setter TargetName="optionMark" Property="Visibility" Value="Visible" />
-                                            </Trigger>
-                                            <Trigger Property="IsEnabled" Value="False">
-                                                <Setter Property="Opacity" Value="0.56" />
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </CheckBox.Style>
-                </CheckBox>
-            </StackPanel>
+                                    </Border>
+                                    <ContentPresenter Grid.Column="1"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                      Content="{TemplateBinding Content}"
+                                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                      ContentStringFormat="{TemplateBinding ContentStringFormat}" />
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter TargetName="checkMark" Property="Visibility" Value="Visible" />
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="{x:Null}">
+                                        <Setter TargetName="optionMark" Property="Visibility" Value="Visible" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.56" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </CheckBox.Style>
+        </CheckBox>
 
-            <!-- WatermarkTextBox для коментаря -->
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <toolkit:WatermarkTextBox Name="txtComment" Width="412" Height="150" Margin="0,0,10,0"
-                                          VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Left"
-                                          AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
-                                          HorizontalScrollBarVisibility="Auto" Foreground="Azure" Watermark="Коментар"
-                                          Background="Transparent" BorderBrush="#FF4C70" BorderThickness="2"
-                                          Padding="10,5" CaretBrush="YellowGreen" />
-            </StackPanel>
+        <!-- Ряд 8: Коментар -->
+        <toolkit:WatermarkTextBox Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Name="txtComment" 
+                                  Margin="0,5,0,5" MinHeight="100"
+                                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                  AcceptsReturn="True" TextWrapping="Wrap" 
+                                  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" 
+                                  Foreground="Azure" Watermark="Коментар"
+                                  Background="Transparent" BorderBrush="#FF4C70" BorderThickness="2"
+                                  Padding="10,5" CaretBrush="YellowGreen" />
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
-                <!-- Кнопка для додавання нового автомобіля -->
-                <Button Name="btnAddCar" Width="150" Height="30" Content="Додати авто" HorizontalAlignment="Center"
-                        VerticalAlignment="Bottom" Margin="0,10,0,10" Click="btnAddCar_Click">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#FE6584" />
-                            <Setter Property="Cursor" Value="Hand" />
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#FF4C70" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
+        <!-- Ряд 9: Кнопка -->
+        <Button Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Name="btnAddCar" 
+                Width="150" Height="30" Content="Додати авто" 
+                HorizontalAlignment="Center" VerticalAlignment="Center" 
+                Margin="0,10" Click="btnAddCar_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#FE6584" />
+                    <Setter Property="Cursor" Value="Hand" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF4C70" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
 
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-            </StackPanel>
-        </StackPanel>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Window>
