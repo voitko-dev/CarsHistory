@@ -25,6 +25,8 @@ namespace CarsHistory.Items
             Auction_openlane = carSearchItem.Auction_openlane;
             Auction_autorola = carSearchItem.Auction_autorola;
             Auction_vw_finance = carSearchItem.Auction_vw_finance;
+            
+            ResetModified();
         }
 
         public CarSearchItem GetCarSearch(string currentUserName)

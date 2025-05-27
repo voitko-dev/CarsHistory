@@ -8,6 +8,7 @@
         Icon="../Resources/Images/Logo.png"
         mc:Ignorable="d"
         Title="Пошук авто" Height="450" Width="1450"
+        WindowState="Maximized"
         Background="#181735">
 
     <Grid>

@@ -146,37 +146,7 @@ namespace CarsHistory.Windows
         {
             LoadCarSearchData();
 
-            ToolTip tooltip = new ToolTip
-            {
-                Content = new TextBlock
-                {
-                    Text = "Вікно перезавантажено",
-                    VerticalAlignment = VerticalAlignment.Center,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                },
-                StaysOpen = false,
-                Placement = PlacementMode.Mouse,
-                Height = 100,
-                HorizontalContentAlignment = HorizontalAlignment.Center,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                Width = 200,
-                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#181735")),
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4C70"))
-            };
-
-            tooltip.IsOpen = true;
-
-            DispatcherTimer timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromSeconds(2)
-            };
-            timer.Tick += (s, args) =>
-            {
-                tooltip.IsOpen = false;
-                timer.Stop();
-            };
-            timer.Start();
+            ShowAutoCloseTooltip("Вікно перезавантажено");
         }
 
         private async Task DeleteAllItems()
@@ -219,21 +189,74 @@ namespace CarsHistory.Windows
             try
             {
                 string currentUserName = firebase.CurUserName;
-                List<CarSearchItem> result = updatedCarSearchList
-                    .Select(displayCarSearch => displayCarSearch.GetCarSearch(currentUserName))
+                
+                List<DisplayCarSearch> modifiedRecords = updatedCarSearchList
+                    .Where(displayCarSearch => displayCarSearch.IsModified)
+                    .ToList();
+                
+                if (modifiedRecords.Count == 0)
+                {
+                    MessageBox.Show("Немає змінених записів для збереження.");
+                    DisableSaveButton();
+                    return;
+                }
+                
+                List<CarSearchItem> result = modifiedRecords
+                    .Select(displayCarSearch => 
+                    {
+                        var item = displayCarSearch.GetCarSearch(currentUserName);
+                        item.LastPersonChange = currentUserName;
+                        return item;
+                    })
                     .ToList();
 
                 await FirebaseService.GetInstance().SetNewCarSearchDataAsync(result);
 
-                LoadCarSearchData(); // Refresh data
+                LoadCarSearchData();
+                
+                ShowAutoCloseTooltip("Дані успішно збережено!");
 
-                MessageBox.Show("Data saved successfully!");
-                DisableSaveButton(); // Disable save button after successful save
+                DisableSaveButton();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error saving data: {ex.Message}");
             }
+        }
+        
+        private void ShowAutoCloseTooltip(string message)
+        {
+            ToolTip tooltip = new ToolTip
+            {
+                Content = new TextBlock
+                {
+                    Text = message,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                },
+                StaysOpen = false,
+                Placement = PlacementMode.Mouse,
+                Height = 100,
+                HorizontalContentAlignment = HorizontalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Width = 200,
+                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#181735")),
+                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4C70"))
+            };
+            
+            tooltip.IsOpen = true;
+            
+            DispatcherTimer timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(2)
+            };
+            timer.Tick += (s, args) =>
+            {
+                tooltip.IsOpen = false;
+                timer.Stop();
+            };
+            timer.Start();
         }
 
         private void DisableSaveButton()
