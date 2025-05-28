@@ -446,10 +446,17 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
-
-                <DataGridTextColumn Header="Дата оновлення"
-                                    Binding="{Binding DateUpdated, StringFormat='dd.MM.yyyy: HH:mm'}" IsReadOnly="True"
-                                    Width="auto" />
+                <DataGridTextColumn Header="Дата оновлення" Width="auto" IsReadOnly="True">
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="DateUpdated" Mode="TwoWay" StringFormat="dd.MM.yyyy HH:mm"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.Converter>
+                                <converter:CarStatusValueConverter />
+                            </Binding.Converter>
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                
                 <DataGridCheckBoxColumn Header="Закрито" Binding="{Binding CarStatusClosed}" Width= "auto" />
                 <DataGridTextColumn Header="Останній редагував" Binding="{Binding LastPersonChange}" Width="150" IsReadOnly="True" />
             </DataGrid.Columns>

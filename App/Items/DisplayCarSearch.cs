@@ -33,8 +33,14 @@ namespace CarsHistory.Items
         {
             Func<FieldWithAuthor<DateTime?>, string, FieldWithAuthor<DateTime?>> finalizeField = (field, user) =>
             {
-                if (field == null) 
-                    return new FieldWithAuthor<DateTime?> { lastPersonChange = user };
+                if (field?.fieldValue == null)
+                {
+                    return new FieldWithAuthor<DateTime?>
+                    {
+                        fieldValue = null,
+                        lastPersonChange = null
+                    };
+                }
                 
                 return new FieldWithAuthor<DateTime?>
                 {

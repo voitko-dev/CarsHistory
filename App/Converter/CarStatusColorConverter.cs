@@ -12,15 +12,15 @@ public class CarStatusColorConverter : IValueConverter
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value == null || string.IsNullOrEmpty(value.ToString()))
-            return "#7a2b2b";
+            return Brushes.White;
 
         if (value is not FieldWithAuthor<DateTime?> fieldWithAuthor ||
             string.IsNullOrEmpty(fieldWithAuthor.lastPersonChange))
-            return Brushes.Transparent;
+            return Brushes.White;
 
         return UsersService.GetInstance().ColorData.TryGetValue(fieldWithAuthor.lastPersonChange, out var color)
             ? new SolidColorBrush((Color)ColorConverter.ConvertFromString(color))
-            : Brushes.Transparent;
+            : Brushes.White;
     }
 
     public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
