@@ -151,9 +151,6 @@ public partial class FirebaseService
                 item.Auction_openlane = null;
                 item.Auction_autorola = null;
                 item.Auction_vw_finance = null;
-                
-                item.DateUpdated = DateTime.Now.ToUniversalTime();
-                item.LastPersonChange = "Автоматичне очищення";
             }
             
             await SetNewCarSearchDataAsync(carSearchList);

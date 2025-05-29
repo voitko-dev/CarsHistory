@@ -10,6 +10,12 @@ public class CarStatusValueConverter : IValueConverter
 {
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
+        if (value is DateTime? && value != null)
+        {
+            DateTime localDateTime = (DateTime)value;
+            return localDateTime.ToLocalTime();
+        }
+            
         if (value is FieldWithAuthor<DateTime?> { fieldValue: not null } fieldWithAuthor)
         {
             DateTime localDateTime = fieldWithAuthor.fieldValue.Value.ToLocalTime();
