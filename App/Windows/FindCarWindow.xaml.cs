@@ -219,21 +219,25 @@ public partial class FindCarWindow : Window
 
     private async void btnSaveChanges_Click(object sender, RoutedEventArgs e)
     {
-        List<Car>? updatedCars = dataGridCars.ItemsSource as List<Car>;
-        if (updatedCars == null)
-            return;
-
-        foreach (Car car in updatedCars)
+        if (dataGridCars.ItemsSource is ObservableCollection<Car> observableCars)
         {
-            car.ProductionDate = car.ProductionDate.ToUtcSafe(true);
-            car.AuctionDate = car.AuctionDate.ToUtcSafe(true);
+            var updatedCars = observableCars.ToList();
+
+            foreach (Car car in updatedCars)
+            {
+                car.ProductionDate = car.ProductionDate.ToUtcSafe(true);
+                car.AuctionDate = car.AuctionDate.ToUtcSafe(true);
+            }
+
+            await FirebaseService.GetInstance().SetNewCarDataAsync(updatedCars);
+
+            MessageBox.Show("Changes saved.");
         }
-
-        await FirebaseService.GetInstance().SetNewCarDataAsync(updatedCars);
-
-        MessageBox.Show("Changes saved.");
+        else
+        {
+            MessageBox.Show("Немає даних для збереження.");
+        }
     }
-
     
     private void btnShowCharts_Click(object sender, RoutedEventArgs e)
     {
