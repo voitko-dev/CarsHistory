@@ -93,6 +93,9 @@ public partial class FindCarWindow : Window
                         DataGridCell gridCell = dataGridCars.GetCell(gridRow, cell);
                         if (gridCell != null)
                         {
+                            if (gridCell.ContentTemplate == null)
+                                return;
+                            
                             var presenter = gridCell.ContentTemplate.FindName("commentTextBlock", gridCell) as TextBlock;
                             if (presenter != null && row.Item is Car car)
                             {
