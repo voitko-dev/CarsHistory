@@ -54,11 +54,19 @@ namespace CarsHistory.Windows
 
             try
             {
-                string? userUid = await FirebaseService.SignInUserAsync(email, password);
-                if (userUid == null)
+                var (userId, isBlocked) = await FirebaseService.SignInUserAsync(email, password);
+                
+                if (isBlocked)
+                {
+                    // Користувач заблокований, показуємо повідомлення
+                    ShowBlockedUserWindow();
+                    return;
+                }
+                
+                if (userId == null)
                     throw new Exception("Invalid username or password.");
 
-                UsersRole role = await FirebaseService.GetUserRoleAsync(userUid);
+                UsersRole role = await FirebaseService.GetUserRoleAsync(userId);
 
                 if (role == UsersRole.Pending)
                 {
@@ -70,7 +78,7 @@ namespace CarsHistory.Windows
                 // Зберігаємо email після успішного логіну
                 SaveEmail(email);
 
-                MainWindow mainWindow = new MainWindow(userUid);
+                MainWindow mainWindow = new MainWindow(userId);
                 mainWindow.Show();
                 Close();
             }
@@ -79,6 +87,13 @@ namespace CarsHistory.Windows
                 ErrorTextBlock.Text = "Error: " + ex.Message;
                 ErrorTextBlock.Visibility = Visibility.Visible;
             }
+        }
+        
+        private void ShowBlockedUserWindow()
+        {
+            BlockedUserWindow blockedWindow = new BlockedUserWindow();
+            Close();
+            blockedWindow.ShowDialog();
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)

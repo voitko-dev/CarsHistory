@@ -1,0 +1,163 @@
+﻿
+<Window x:Class="CarsHistory.Windows.UserManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Управління користувачами" 
+        Height="500" 
+        Width="800"
+        WindowStartupLocation="CenterOwner"
+        Background="#181735"
+        Icon="../Resources/Images/Logo.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <Button Name="btnReloadUsers" 
+                    Content="Перезавантажити" 
+                    Width="150" 
+                    Height="30" 
+                    Margin="5" 
+                    Click="btnReloadUsers_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FE6584"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF4C70"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+
+        <TextBlock Grid.Row="0" 
+                   Text="Список користувачів" 
+                   FontSize="20" 
+                   FontWeight="Bold" 
+                   Margin="0,0,0,10"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="White">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="15" Color="Khaki" />
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <DataGrid Grid.Row="1" 
+                  x:Name="UsersDataGrid" 
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  SelectionChanged="UsersDataGrid_SelectionChanged"
+                  Background="Transparent"
+                  BorderBrush="#FF4C70"
+                  BorderThickness="2"
+                  RowBackground="#2D2D45"
+                  AlternatingRowBackground="#232336"
+                  GridLinesVisibility="All"
+                  HorizontalGridLinesBrush="#FF4C70"
+                  VerticalGridLinesBrush="#FF4C70"
+                  Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ім'я" Binding="{Binding Name}" Width="150" Foreground="White">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="Padding" Value="5"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="200" Foreground="White">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="Padding" Value="5"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Роль" Binding="{Binding Role}" Width="100" Foreground="White">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="Padding" Value="5"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Header="Статус" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding IsBlocked, Converter={StaticResource BoolToBlockedStatusConverter}}" 
+                                       Foreground="{Binding IsBlocked, Converter={StaticResource BoolToBlockedColorConverter}}"
+                                       VerticalAlignment="Center"
+                                       Padding="5"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Дії" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding IsBlocked, Converter={StaticResource BoolToBlockButtonTextConverter}}" 
+                                    Click="BlockButton_Click"
+                                    Tag="{Binding Id}"
+                                    Background="{Binding IsBlocked, Converter={StaticResource BoolToBlockButtonColorConverter}}"
+                                    Margin="5"
+                                    Width="120"
+                                    Height="30">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Width="120" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
+                                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#2D2D45"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="BorderBrush" Value="#FF4C70"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+
+        <!-- Декоративні елементи, як у інших вікнах -->
+        <Grid Grid.Column="1" Grid.RowSpan="2" Margin="0,-250,-610,85" Panel.ZIndex="-1">
+            <Grid.RenderTransform>
+                <RotateTransform Angle="50" />
+            </Grid.RenderTransform>
+
+            <StackPanel Orientation="Horizontal" Margin="-350,150,-255,-250">
+                <StackPanel>
+                    <Border Width="700" Height="35" Background="#3DDDC2" Margin="150,0,0,0" CornerRadius="20" />
+                    <Border Width="700" Height="35" Background="#FC6586" Margin="0,15,0,0" CornerRadius="20" />
+                    <Border Width="700" Height="35" Background="#383660" Margin="75,15,0,0" CornerRadius="20" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

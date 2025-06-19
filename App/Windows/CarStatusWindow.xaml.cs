@@ -18,7 +18,7 @@ namespace CarsHistory.Windows
             DisableSaveButton();
             DisableDeleteButton();
 
-            if (FirebaseService.GetInstance().CurUserRole == UsersRole.Admin)
+            if (FirebaseService.GetInstance().CurUserRole is UsersRole.Admin or UsersRole.SuperAdmin)
                 btnDeleteAll.Visibility = Visibility.Visible;
         }
 
@@ -149,7 +149,7 @@ namespace CarsHistory.Windows
         {
             FirebaseService firebase = FirebaseService.GetInstance();
 
-            if (firebase.CurUserRole != UsersRole.Admin)
+            if (firebase.CurUserRole is not UsersRole.Admin or UsersRole.SuperAdmin)
             {
                 MessageBox.Show("All records can only be deleted by an admin.");
                 return;

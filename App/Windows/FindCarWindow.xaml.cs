@@ -26,7 +26,7 @@ public partial class FindCarWindow : Window
 
     private void SetStateBtnDelete()
     {
-        if (firebaseService.CurUserRole != UsersRole.Admin)
+        if (firebaseService.CurUserRole is not UsersRole.Admin or UsersRole.SuperAdmin)
             btnDeleteCar.Visibility = Visibility.Collapsed;
     }
 

@@ -48,7 +48,7 @@ public partial class MainWindow : Window
     private void btnCarOperations_Click(object sender, RoutedEventArgs e)
     {
         carOperationsPopup.IsOpen = !carOperationsPopup.IsOpen;
-        if (role == UsersRole.Admin) 
+        if (role is UsersRole.Admin or UsersRole.Admin) 
             SetItemsVisibility();
     }
     
@@ -56,16 +56,24 @@ public partial class MainWindow : Window
     {
         (role, string name) = await FirebaseService.GetUserRoleAndNameAsync(userUid);
 
-        if (role == UsersRole.Admin) 
+        if (role is UsersRole.Admin or UsersRole.SuperAdmin) 
             SetItemsVisibility();
 
         RoleTextBlock.Text = role == UsersRole.None ? "Unknown Role" : $"Welcome, {role} {name}!";
+    }
+    
+    private void UserManagementButton_Click(object sender, RoutedEventArgs e)
+    {
+        UserManagementWindow userManagementWindow = new UserManagementWindow();
+        userManagementWindow.Owner = this;
+        userManagementWindow.ShowDialog();
     }
 
     private void SetItemsVisibility()
     {
         btnDeleteCar.Visibility = Visibility.Visible;
         btnNewUsers.Visibility = Visibility.Visible;
+        btnBlockUsers.Visibility = Visibility.Visible;
     }
     
     private void OpenWindowAndClosePopup<T>(Func<T> windowFactory) where T : Window

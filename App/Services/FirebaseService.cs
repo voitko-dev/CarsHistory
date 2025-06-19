@@ -5,7 +5,6 @@ using FirebaseAdmin;
 using FirebaseAdmin.Auth;
 using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Firestore;
-using Newtonsoft.Json.Linq;
 
 namespace CarsHistory.Services;
 
@@ -21,11 +20,12 @@ public partial class FirebaseService
     private const string CarCollection = "cars";
     private const string CarsHistoryCollection = "cars-history";
     private const string CarsSearchCollection = "carssearch";
+    private const string UsersCollection = "users";
     
     public FirebaseAuth Auth => auth;
-    public string CurUserName => curUserName;
-    public string? CurUserId => curUserID;
-    public UsersRole CurUserRole => curUserRole;
+    public string CurUserName => _currentUser?.Name ?? string.Empty;
+    public string? CurUserId => _currentUser?.Id ?? string.Empty;
+    public UsersRole CurUserRole => _currentUser?.Role ?? UsersRole.None;
     private string encryptedFilePath = AppDomain.CurrentDomain.BaseDirectory + @"cars-history.json.enc";
 
     private FirebaseService()
@@ -37,7 +37,7 @@ public partial class FirebaseService
             FileDecryption.DecryptFile(encryptedFilePath, credentialsPath);
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", credentialsPath);
         
-            firebaseApp = FirebaseApp.Create(new AppOptions()
+            firebaseApp = FirebaseApp.Create(new AppOptions
             {
                 Credential = GoogleCredential.FromFile(credentialsPath),
             });
@@ -186,7 +186,7 @@ public partial class FirebaseService
         DocumentReference? carStatusRef = firestoreDb.Collection(CarStatusesCollection).Document();
         
         carStatus.DateUpdated = DateTime.UtcNow;
-        carStatus.LastPersonChange = curUserName;
+        carStatus.LastPersonChange = CurUserName;
         
         await carStatusRef.SetAsync(carStatus);
     }
@@ -198,7 +198,7 @@ public partial class FirebaseService
             foreach (CarStatus carStatus in carsStatusList.Where(t => t is { IsModified: true }))
             {
                 carStatus.DateUpdated = DateTime.UtcNow;
-                carStatus.LastPersonChange = curUserName;
+                carStatus.LastPersonChange = CurUserName;
                 DocumentReference docRef = firestoreDb.Collection(CarStatusesCollection).Document(carStatus.Id);
                 await docRef.SetAsync(carStatus);
             }
@@ -212,7 +212,7 @@ public partial class FirebaseService
             foreach (CarSearchItem carStatus in carSearchesList.Where(t => t is { IsModified: true }))
             {
                 carStatus.DateUpdated = DateTime.UtcNow;
-                carStatus.LastPersonChange = curUserName;
+                carStatus.LastPersonChange = CurUserName;
                 DocumentReference docRef = firestoreDb.Collection(CarsSearchCollection).Document(carStatus.Id);
                 await docRef.SetAsync(carStatus);
             }
@@ -259,7 +259,7 @@ public partial class FirebaseService
         {
             foreach (Car car in cars.Where(t => t is { IsModified: true }))
             {
-                if (curUserRole == UsersRole.Admin || car.IdAuthor == curUserID)
+                if (CurUserRole == UsersRole.Admin || CurUserRole == UsersRole.SuperAdmin || car.IdAuthor == CurUserId)
                 {
                     DocumentReference docRef = firestoreDb.Collection(CarCollection).Document(car.Id);
                     await docRef.SetAsync(car);

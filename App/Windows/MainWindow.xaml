@@ -222,6 +222,37 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+            
+            <Button Name="btnBlockUsers"
+                    Content="Блокування користувачів"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Width="150"
+                    Height="30"
+                    Click="UserManagementButton_Click"
+                    Margin="10"
+                    Visibility="Hidden">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FE6584"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF4C70"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
             <!-- Текстовий блок для ролі -->
             <TextBlock Grid.Row="1" Name="RoleTextBlock"

@@ -20,7 +20,7 @@ namespace CarsHistory.Windows
             DisableSaveButton();
             DisableDeleteButton();
             
-            bool isAdmin = firebase.CurUserRole == UsersRole.Admin;
+            bool isAdmin = firebase.CurUserRole is UsersRole.Admin or UsersRole.SuperAdmin;
             
             btnDeleteAll.Visibility = isAdmin ? Visibility.Visible : Visibility.Collapsed;
             btnDelete.Visibility = isAdmin ? Visibility.Visible : Visibility.Collapsed;
@@ -71,7 +71,7 @@ namespace CarsHistory.Windows
         
         private async void btnClearDates_Click(object sender, RoutedEventArgs e)
         {
-            if (firebase.CurUserRole != UsersRole.Admin)
+            if (firebase.CurUserRole is not UsersRole.Admin or UsersRole.SuperAdmin)
             {
                 MessageBox.Show("Операція доступна тільки для адміністраторів.");
                 return;
@@ -104,7 +104,7 @@ namespace CarsHistory.Windows
             if (dataGridCarSearch.ItemsSource == null) 
                 return;
             
-            if (firebase.CurUserRole != UsersRole.Admin)
+            if (firebase.CurUserRole is not UsersRole.Admin or UsersRole.SuperAdmin)
             {
                 MessageBox.Show("Записи можуть бути видалені тільки адміністратором.");
                 return;
@@ -151,7 +151,7 @@ namespace CarsHistory.Windows
 
         private async Task DeleteAllItems()
         {
-            if (firebase.CurUserRole != UsersRole.Admin)
+            if (firebase.CurUserRole is not UsersRole.Admin or UsersRole.SuperAdmin)
             {
                 MessageBox.Show("Всі записи можуть бути видалені тільки адміністратором.");
                 return;

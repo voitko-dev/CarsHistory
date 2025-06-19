@@ -4,8 +4,13 @@
              xmlns:local="clr-namespace:CarsHistory"
              xmlns:global="clr-namespace:"
              xmlns:converter="clr-namespace:CarsHistory.Converter"
+             xmlns:userManagment="clr-namespace:CarsHistory.Converter.UserManagment"
              StartupUri="/Windows/LoginWindow.xaml">
     <Application.Resources>
+        <userManagment:BoolToBlockedStatusConverter x:Key="BoolToBlockedStatusConverter"/>
+        <userManagment:BoolToBlockedColorConverter x:Key="BoolToBlockedColorConverter"/>
+        <userManagment:BoolToBlockButtonTextConverter x:Key="BoolToBlockButtonTextConverter"/>
+        <userManagment:BoolToBlockButtonColorConverter x:Key="BoolToBlockButtonColorConverter"/>
 
         <converter:CarStatusColorConverter x:Key="CarStatusColorConverter" />
     </Application.Resources>
