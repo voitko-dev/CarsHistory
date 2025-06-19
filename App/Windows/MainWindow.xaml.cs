@@ -8,6 +8,7 @@ namespace CarsHistory.Windows;
 public partial class MainWindow : Window
 {
     private string userUid;
+    private UsersRole role;
     public string AppVersion { get; set; }
     
     public MainWindow()
@@ -47,11 +48,13 @@ public partial class MainWindow : Window
     private void btnCarOperations_Click(object sender, RoutedEventArgs e)
     {
         carOperationsPopup.IsOpen = !carOperationsPopup.IsOpen;
+        if (role == UsersRole.Admin) 
+            SetItemsVisibility();
     }
     
     private async void CheckUserRole()
     {
-        (UsersRole role, string name) = await FirebaseService.GetUserRoleAndNameAsync(userUid);
+        (role, string name) = await FirebaseService.GetUserRoleAndNameAsync(userUid);
 
         if (role == UsersRole.Admin) 
             SetItemsVisibility();

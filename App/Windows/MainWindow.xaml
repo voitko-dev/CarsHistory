@@ -135,6 +135,7 @@
                                 Content="Видалити авто"
                                 Width="150"
                                 Height="30"
+                                Visibility="Collapsed"
                                 Click="btnDeleteCar_Click"
                                 Margin="5">
                             <Button.Style>
