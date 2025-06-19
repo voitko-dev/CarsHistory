@@ -203,7 +203,7 @@
                 <DataGridTextColumn Header="Модель" Binding="{Binding Model}" Width="auto" IsReadOnly="True"/>      
                 <DataGridTextColumn Header="Група" Binding="{Binding Group}" Width="auto" />
                 
-                <DataGridTextColumn Header="Коментар" Binding="{Binding Comment}" IsReadOnly="False" Width="*">
+                <DataGridTextColumn Header="Коментар" Binding="{Binding Comment}" IsReadOnly="False" MinWidth="400" Width="*">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>

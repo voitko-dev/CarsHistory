@@ -245,7 +245,8 @@
                         <DataTemplate>
                             <TextBox Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" 
                                      TextWrapping="Wrap" 
-                                     AcceptsReturn="True" 
+                                     AcceptsReturn="True"
+                                     MinHeight="200"
                                      VerticalAlignment="Stretch" 
                                      Padding="5"/>
                         </DataTemplate>
