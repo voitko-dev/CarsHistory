@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace CarsHistory.Converter;
+namespace CarsHistory.Extentions;
 
 public static class ColorExtention
 {

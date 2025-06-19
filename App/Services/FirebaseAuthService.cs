@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
 using System.Net.Http;
 using System.Text;
-using CarsHistory.Converter;
 using CarsHistory.Extentions;
 using CarsHistory.Items;
 using FirebaseAdmin.Auth;
@@ -130,7 +129,7 @@ public partial class FirebaseService
         foreach (DocumentSnapshot? item in snapshot.Documents)
         {
             string name = (item.Exists ? item.ToDictionary()["Name"].ToString() : null) ?? string.Empty;
-            if (name.isNullOrEmpty()) 
+            if (name.IsNullOrEmpty()) 
                 continue;
             
             usersNames.Add(name);
@@ -148,7 +147,7 @@ public partial class FirebaseService
         {
             string name = (item.Exists ? item.ToDictionary()["Name"].ToString() : null) ?? string.Empty;
             string color = (item.Exists ? item.ToDictionary()?["Color"]?.ToString() : null) ?? string.Empty;
-            if (name.isNullOrEmpty() || color.isNullOrEmpty()) 
+            if (name.IsNullOrEmpty() || color.IsNullOrEmpty()) 
                 continue;
             
             data.Add(name, color);

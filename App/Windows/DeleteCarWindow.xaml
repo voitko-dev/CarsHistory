@@ -4,51 +4,202 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xctk"
         WindowStartupLocation="CenterScreen"
         Icon="../Resources/Images/Logo.png"
-        Title="Delete Cars by Date Range" Height="280" Width="400"
+        Title="Видалення автомобілів" Height="600" Width="800"
+        WindowState="Maximized"
         Background="#181735">
 
     <Window.Resources>
         <!-- Стиль для Button -->
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="#FE6584"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Padding" Value="10,5"/>
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#FE6584" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="150" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
+                                CornerRadius="12" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#FF4C70"/>
+                    <Setter Property="Background" Value="#FF4C70" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Стиль для DeleteButton в DataGrid -->
+        <Style x:Key="DeleteButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#FE6584" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Width" Value="80" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
+                                CornerRadius="8" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF4C70" />
                 </Trigger>
             </Style.Triggers>
         </Style>
 
         <!-- Стиль для TextBlock -->
         <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        
+        <!-- Стиль для Expander -->
+        <Style TargetType="Expander">
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
         </Style>
     </Window.Resources>
 
     <Grid Margin="20">
-        <StackPanel Orientation="Vertical">
-                    <!-- Виведення тексту для вибору діапазону дат -->
-        <TextBlock Text="Оберіть діапазон дат" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-        <!-- Поля для введення дат -->
-        <DatePicker Name="dpStartDate" Width="200" Height="30" Margin="10,10,10,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <DatePicker Name="dpEndDate" Width="200" Height="30" Margin="10,10,10,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" Text="Список автомобілів" FontSize="22" FontWeight="Bold"
+                   HorizontalAlignment="Center" Margin="0,0,0,15" />
 
-        <!-- Кнопка для видалення автомобілів -->
-        <Button Name="btnDeleteCars" Width="130" Height="30" Content="Видалити авто" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,10,0" Click="btnDeleteCars_Click"/>
+        <!-- DataGrid для списку автомобілів -->
+        <DataGrid Grid.Row="1" Name="carsDataGrid"
+                  AutoGenerateColumns="False"
+                  Background="Transparent"
+                  BorderBrush="#FF4C70"
+                  BorderThickness="1"
+                  GridLinesVisibility="All"
+                  RowBackground="#252450"
+                  AlternatingRowBackground="#2E2D5C"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserReorderColumns="False"
+                  CanUserSortColumns="True"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Auto">
+
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#3E3D73" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Padding" Value="10,5" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="BorderThickness" Value="0,0,1,1" />
+                    <Setter Property="BorderBrush" Value="#FF4C70" />
+                </Style>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Padding" Value="10,5" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#FF4C70" />
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Марка" Binding="{Binding Brand}" Width="120" />
+                <DataGridTextColumn Header="Модель" Binding="{Binding Model}" Width="120" />
+                <DataGridTextColumn Header="VIN" Binding="{Binding VIN}" Width="150" />
+                <DataGridTextColumn Header="Ціна" Binding="{Binding Price, StringFormat=\{0:C\}}" Width="100" />
+                <DataGridTextColumn Header="Дата додавання"
+                                    Binding="{Binding DateAdded, StringFormat=\{0:dd.MM.yyyy\}}" Width="120" />
+
+                <!-- Розкривна панель для додаткових деталей -->
+                <DataGridTemplateColumn Header="Деталі" Width="600">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Expander ExpandDirection="Down" Foreground="White">
+                                <Expander.Header>
+                                    <TextBlock Text="Докладніше" Foreground="White" />
+                                </Expander.Header>
+                                <StackPanel Margin="5">
+                                    <!-- Пробіг з обмеженням тексту -->
+                                    <TextBlock>
+                                        <Run Text="Пробіг: " FontWeight="Bold" />
+                                        <Run Text="{Binding Mileage, StringFormat=\{0:N0\} км}" />
+                                    </TextBlock>
+
+                                    <!-- Дата виробництва з обмеженням тексту -->
+                                    <TextBlock>
+                                        <Run Text="Дата виробництва: " FontWeight="Bold" />
+                                        <Run Text="{Binding ProductionDate, StringFormat=\{0:MM.yyyy\}}" />
+                                    </TextBlock>
+
+                                    <!-- Опис з переносом тексту та обмеженням довжини -->
+                                    <TextBlock Margin="0,5,0,0">
+                                        <Run Text="Опис: " FontWeight="Bold" />
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding Comment}"
+                                               TextWrapping="Wrap"
+                                               MaxWidth="600"
+                                               MaxHeight="150"
+                                               TextTrimming="CharacterEllipsis" />
+                                </StackPanel>
+                            </Expander>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Дії" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Видалити"
+                                    Style="{StaticResource DeleteButtonStyle}"
+                                    Click="btnDeleteSingleCar_Click"
+                                    Tag="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <!-- Панель з кнопками -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+            <!-- Тут можна розмістити інші кнопки, якщо потрібно -->
+        </StackPanel>
 
         <!-- Статусний текст -->
-        <TextBlock Name="txtStatus" Width="350" Height="30" FontWeight="Bold" Margin="10,10,10,10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        </StackPanel>
-                    
-                    
-        <Grid Grid.Column="1" Grid.RowSpan="2" Margin="700,-10,-710,85" Panel.ZIndex="-1">
+        <TextBlock Grid.Row="2" Name="txtStatus"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   FontWeight="Bold"
+                   Margin="0,55,0,0"
+                   Foreground="#FE6584" />
+
+        <!-- Декоративні елементи -->
+        <Grid Grid.RowSpan="3" Panel.ZIndex="-1">
             <Grid.RenderTransform>
                 <RotateTransform Angle="140" />
             </Grid.RenderTransform>

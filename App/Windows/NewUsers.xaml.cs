@@ -26,7 +26,7 @@ public partial class NewUsers : Window
         string? selectedUser = PendingUsersList.SelectedItem.ToString();
         KeyValuePair<string, string> curUser = _pendingUsersList.FirstOrDefault(t => t.Key == selectedUser);
         string userId = curUser.Value;
-        if (!userId.isNullOrEmpty())
+        if (!userId.IsNullOrEmpty())
         {
             await FirebaseService.ApproveUserAsync(userId);
             MessageBox.Show($"User {selectedUser} has been approved.");

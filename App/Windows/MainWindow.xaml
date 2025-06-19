@@ -16,90 +16,26 @@
         <Grid Background="#0F0F2D"></Grid>
 
         <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center">
-            <!-- Кнопки для виконання операцій -->
-            <Button Name="btnAddCar"
-                    Content="Додати авто"
+            <!-- Меню для групування операцій з авто -->
+            <Button Name="btnCarOperations"
+                    Content="Операції з авто"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Width="150"
                     Height="30"
-                    Click="btnAddCar_Click"
-                    Margin="10">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#FE6584"></Setter>
-                        <Setter Property="Cursor" Value="Hand"></Setter>
-
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#A02F4E"></Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
-                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-
-            </Button>
-
-            <Button Name="btnFindCar"
-                    Content="Знайти авто в бд"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Width="150"
-                    Height="30"
-                    Click="btnFindCar_Click"
-                    Margin="10">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#FE6584"></Setter>
-                        <Setter Property="Cursor" Value="Hand"></Setter>
-
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#A02F4E"></Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
-                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-
-            <Button Name="btnCarStatus"
-                    Content="Статус авто"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Width="150"
-                    Height="30"
-                    Click="btnCarStatus_Click"
                     Margin="10"
-                    Visibility="Visible">
+                    Click="btnCarOperations_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#FE6584"></Setter>
                         <Setter Property="Cursor" Value="Hand"></Setter>
-
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FF4C70"></Setter>
+                                <Setter Property="Background" Value="#A02F4E"></Setter>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
-
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
@@ -108,6 +44,121 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+
+            <!-- Випадаюче меню для операцій з авто -->
+            <Popup Name="carOperationsPopup" 
+                   PlacementTarget="{Binding ElementName=btnCarOperations}" 
+                   Placement="Bottom" Width="300"
+                   IsOpen="False" 
+                   StaysOpen="False">
+                <Border Background="#181735" BorderBrush="#FE6584" BorderThickness="1" CornerRadius="8">
+                    <StackPanel>
+                        <Button Name="btnAddCar"
+                                Content="Додати авто"
+                                Width="150"
+                                Height="30"
+                                Click="btnAddCar_Click"
+                                Margin="5">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#FE6584"></Setter>
+                                    <Setter Property="Cursor" Value="Hand"></Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#A02F4E"></Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Name="btnFindCar"
+                                Content="Знайти авто в бд"
+                                Width="150"
+                                Height="30"
+                                Click="btnFindCar_Click"
+                                Margin="5">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#FE6584"></Setter>
+                                    <Setter Property="Cursor" Value="Hand"></Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#A02F4E"></Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Name="btnCarStatus"
+                                Content="Статус авто"
+                                Width="150"
+                                Height="30"
+                                Click="btnCarStatus_Click"
+                                Margin="5">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#FE6584"></Setter>
+                                    <Setter Property="Cursor" Value="Hand"></Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF4C70"></Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Name="btnDeleteCar"
+                                Content="Видалити авто"
+                                Width="150"
+                                Height="30"
+                                Click="btnDeleteCar_Click"
+                                Margin="5">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#FE6584"></Setter>
+                                    <Setter Property="Cursor" Value="Hand"></Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF4C70"></Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Popup>
             
             <Button Name="btnNewCarSearch"
                     Content="Статус пошуку авто"
@@ -140,38 +191,6 @@
                 </Button.Template>
             </Button>
 
-            <Button Name="btnDeleteCar"
-                    Content="Видалити авто"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Width="150"
-                    Height="30"
-                    Click="btnDeleteCar_Click"
-                    Margin="10"
-                    Visibility="Hidden">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#FE6584"></Setter>
-                        <Setter Property="Cursor" Value="Hand"></Setter>
-
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FF4C70"></Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Width="150" Height="30" CornerRadius="12" Background="{TemplateBinding Background}">
-                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-
-            </Button>
-
             <Button Name="btnNewUsers"
                     Content="Запити на приєднання"
                     HorizontalAlignment="Center"
@@ -201,7 +220,6 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-
             </Button>
 
             <!-- Текстовий блок для ролі -->
@@ -219,6 +237,7 @@
             </TextBlock>
         </StackPanel>
         
+        <!-- Решта коду залишається незмінною -->
         <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
             <TextBlock 
                 HorizontalAlignment="Left"

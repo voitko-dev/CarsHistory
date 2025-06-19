@@ -44,6 +44,11 @@ public partial class MainWindow : Window
         DataContext = this;
     }
     
+    private void btnCarOperations_Click(object sender, RoutedEventArgs e)
+    {
+        carOperationsPopup.IsOpen = !carOperationsPopup.IsOpen;
+    }
+    
     private async void CheckUserRole()
     {
         (UsersRole role, string name) = await FirebaseService.GetUserRoleAndNameAsync(userUid);
@@ -60,39 +65,40 @@ public partial class MainWindow : Window
         btnNewUsers.Visibility = Visibility.Visible;
     }
     
+    private void OpenWindowAndClosePopup<T>(Func<T> windowFactory) where T : Window
+    {
+        carOperationsPopup.IsOpen = false;
+        T window = windowFactory();
+        window.Show();
+    }
+
     private void btnAddCar_Click(object sender, RoutedEventArgs e)
     {
-        AddCarWindow addCarWindow = new AddCarWindow();
-        addCarWindow.Show();
+        OpenWindowAndClosePopup(() => new AddCarWindow());
     }
-    
+
     private void btnCarStatus_Click(object sender, RoutedEventArgs e)
     {
-        CarStatusWindow carStatusWindow = new CarStatusWindow();
-        carStatusWindow.Show();
+        OpenWindowAndClosePopup(() => new CarStatusWindow());
+    }
+
+    private void btnFindCar_Click(object sender, RoutedEventArgs e)
+    {
+        OpenWindowAndClosePopup(() => new FindCarWindow());
+    }
+
+    private void btnDeleteCar_Click(object sender, RoutedEventArgs e)
+    {
+        OpenWindowAndClosePopup(() => new DeleteCarWindow());
     }
     
     private void btnNewCarSearch_Click(object sender, RoutedEventArgs e)
     {
-        CarSearchWindow carSearchWindow = new CarSearchWindow();
-        carSearchWindow.Show();
-    }
-    
-    private void btnFindCar_Click(object sender, RoutedEventArgs e)
-    {
-        FindCarWindow findCarWindow = new FindCarWindow();
-        findCarWindow.Show();
-    }
-    
-    private void btnDeleteCar_Click(object sender, RoutedEventArgs e)
-    {
-        DeleteCarWindow deleteCarWindow = new DeleteCarWindow();
-        deleteCarWindow.Show();
+        OpenWindowAndClosePopup(() => new CarSearchWindow());
     }
 
     private void btnNewUsers_Click(object sender, RoutedEventArgs e)
     {
-        NewUsers newUsersWindow = new NewUsers();
-        newUsersWindow.Show();
+        OpenWindowAndClosePopup(() => new NewUsers());
     }
 }

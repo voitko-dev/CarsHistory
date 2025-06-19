@@ -165,11 +165,11 @@ public partial class FindCarWindow : Window
                 ? null
                 : carFromData;
             
-            if (brandFilter.isNullOrEmpty() && modelFilter.isNullOrEmpty() && !dateAddedFrom.HasValue &&
+            if (brandFilter.IsNullOrEmpty() && modelFilter.IsNullOrEmpty() && !dateAddedFrom.HasValue &&
                 !dateAddedTo.HasValue &&
                 !mileageFrom.HasValue && !mileageTo.HasValue && !priceFrom.HasValue && !priceTo.HasValue &&
                 !productionYearFrom.HasValue && !productionYearTo.HasValue && !enginePowerFrom.HasValue &&
-                !enginePowerTo.HasValue && author.isNullOrEmpty() && transmission.isNullOrEmpty() && carFrom.isNullOrEmpty())
+                !enginePowerTo.HasValue && author.IsNullOrEmpty() && transmission.IsNullOrEmpty() && carFrom.IsNullOrEmpty())
             {
                 MessageBox.Show("Please enter at least one filter.");
                 return;
@@ -178,8 +178,8 @@ public partial class FindCarWindow : Window
             List<Car> cars = await firebaseService.GetCarsAsync();
 
             filteredCars = new ObservableCollection<Car>(cars.Where(car =>
-                    (brandFilter.isNullOrEmpty() || car.Brand.Contains(brandFilter, StringComparison.CurrentCultureIgnoreCase)) &&
-                    (modelFilter.isNullOrEmpty() || car.Model.Contains(modelFilter, StringComparison.CurrentCultureIgnoreCase)) &&
+                    (brandFilter.IsNullOrEmpty() || car.Brand.Contains(brandFilter, StringComparison.CurrentCultureIgnoreCase)) &&
+                    (modelFilter.IsNullOrEmpty() || car.Model.Contains(modelFilter, StringComparison.CurrentCultureIgnoreCase)) &&
                     (!dateAddedFrom.HasValue || car.DateAdded >= dateAddedFrom) &&
                     (!dateAddedTo.HasValue || car.DateAdded <= dateAddedTo) &&
                     (!mileageFrom.HasValue || car.Mileage >= mileageFrom) &&
@@ -190,9 +190,9 @@ public partial class FindCarWindow : Window
                     (!productionYearTo.HasValue || car.ProductionDate.Year <= productionYearTo) &&
                     (!enginePowerFrom.HasValue || car.EnginePower >= enginePowerFrom) &&
                     (!enginePowerTo.HasValue || car.EnginePower <= enginePowerTo) &&
-                    (author.isNullOrEmpty() || car.Author.Contains(author, StringComparison.CurrentCultureIgnoreCase)) &&
-                    (transmission.isNullOrEmpty() || car.Transmission.Contains(transmission, StringComparison.CurrentCultureIgnoreCase)) &&
-                    (carFrom.isNullOrEmpty() || car.CarFrom.Contains(carFrom, StringComparison.CurrentCultureIgnoreCase))
+                    (author.IsNullOrEmpty() || car.Author.Contains(author, StringComparison.CurrentCultureIgnoreCase)) &&
+                    (transmission.IsNullOrEmpty() || car.Transmission.Contains(transmission, StringComparison.CurrentCultureIgnoreCase)) &&
+                    (carFrom.IsNullOrEmpty() || car.CarFrom.Contains(carFrom, StringComparison.CurrentCultureIgnoreCase))
                 )
                 .ToList());
 

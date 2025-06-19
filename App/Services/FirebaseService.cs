@@ -113,7 +113,7 @@ public partial class FirebaseService
 
         foreach (Car car in carsList)
         {
-            if (car.CarStatusId.isNullOrEmpty())
+            if (car.CarStatusId.IsNullOrEmpty())
                 resultList.Add(car);
         }
 
@@ -127,7 +127,7 @@ public partial class FirebaseService
 
         foreach (Car car in carsList)
         {
-            if (!car.CarStatusId.isNullOrEmpty())
+            if (!car.CarStatusId.IsNullOrEmpty())
                 resultList.Add(car);
         }
 
@@ -275,7 +275,7 @@ public partial class FirebaseService
 
         string carId = carsList.FirstOrDefault(t => t.CarStatusId == id)?.Id ?? "";
         
-        if (!carId.isNullOrEmpty())
+        if (!carId.IsNullOrEmpty())
             await SetCarStatusFieldInCarDataAsync(carId);
         
         await carRef.DeleteAsync();

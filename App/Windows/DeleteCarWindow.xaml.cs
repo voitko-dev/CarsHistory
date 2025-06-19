@@ -1,77 +1,66 @@
-﻿using System.Windows;
-using CarsHistory.Extentions;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
 using CarsHistory.Items;
 using CarsHistory.Services;
 
-namespace CarsHistory.Windows;
-
-public partial class DeleteCarWindow : Window
+namespace CarsHistory.Windows
 {
-    private readonly FirebaseService firebaseService;
-
-    public DeleteCarWindow()
+    public partial class DeleteCarWindow : Window
     {
-        InitializeComponent();
-        firebaseService = FirebaseService.GetInstance();
-    }
+        private ObservableCollection<Car> cars;
+        private readonly FirebaseService _firebaseService;
 
-    // Обробник події для кнопки видалення
-    private async void btnDeleteCars_Click(object sender, RoutedEventArgs e)
-    {
-        try
+        public DeleteCarWindow()
         {
-            DateTime? startDate = dpStartDate.SelectedDate;
-            DateTime? endDate = dpEndDate.SelectedDate;
-            
-            if (!startDate.HasValue || !endDate.HasValue)
-            {
-                MessageBox.Show("Please select both start and end dates.");
-                return;
-            }
-            
-            if (startDate > endDate)
-            {
-                MessageBox.Show("Start date cannot be later than end date.");
-                return;
-            }
-            
-            List<Car> cars = await firebaseService.GetCarsAsync();
+            InitializeComponent();
+            _firebaseService = FirebaseService.GetInstance();
+            LoadCars();
+        }
 
-            // Фільтрація за датою додавання
-            List<Car> carsToDelete = new List<Car>();
-            foreach (Car car in cars)
+        private async void LoadCars()
+        {
+            try
             {
-                if (car.DateAdded >= startDate.Value.ToUtcSafe() && car.DateAdded <= endDate.Value.ToUtcSafe())
-                    carsToDelete.Add(car);
+                List<Car> carsList = await _firebaseService.GetCarsAsync();
+                cars = new ObservableCollection<Car>(carsList);
+                carsDataGrid.ItemsSource = cars;
             }
-            
-            if (carsToDelete.Count > 0)
+            catch (Exception ex)
             {
-                MessageBoxResult result = MessageBox.Show("Are you sure you want to delete " + carsToDelete.Count + " cars?", "Delete Confirmation", MessageBoxButton.YesNo);
-                
-                if (result == MessageBoxResult.Yes)
-                {
-                    foreach (Car car in carsToDelete)
-                    {
-                        await firebaseService.DeleteCarAsync(car.Id);
-                    }
-
-                    MessageBox.Show("Cars deleted successfully!");
-                    txtStatus.Text = carsToDelete.Count + " cars deleted successfully.";
-                }
-                else
-                {
-                    txtStatus.Text = "Car deletion cancelled.";
-                }
-            }
-            else
-            {
-                MessageBox.Show("No cars found in the selected date range.");
+                MessageBox.Show($"Помилка при завантаженні автомобілів: {ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        catch (Exception ex)
+
+        private void btnDeleteSingleCar_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Error: " + ex.Message);
+            if (sender is Button button && button.Tag is Car car)
+            {
+                DeleteCar(car);
+            }
+        }
+
+        private async void DeleteCar(Car car)
+        {
+            try
+            {
+                var result = MessageBox.Show(
+                    $"Ви впевнені, що хочете видалити автомобіль {car.Brand} {car.Model}?", 
+                    "Підтвердження видалення", 
+                    MessageBoxButton.YesNo, 
+                    MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    await _firebaseService.DeleteCarAsync(car.Id);
+                    cars.Remove(car);
+                    txtStatus.Text = "Автомобіль успішно видалено";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка при видаленні автомобіля: {ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
