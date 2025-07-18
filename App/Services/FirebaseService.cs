@@ -14,14 +14,15 @@ public partial class FirebaseService
     private readonly FirestoreDb firestoreDb;
     private static FirebaseApp firebaseApp;
     private static FirebaseAuth auth;
-    
-    
+
+
     private const string CarStatusesCollection = "carStatuses";
     private const string CarCollection = "cars";
     private const string CarsHistoryCollection = "cars-history";
     private const string CarsSearchCollection = "carssearch";
     private const string UsersCollection = "users";
-    
+    private const string OffersCollection = "offers";
+
     public FirebaseAuth Auth => auth;
     public string CurUserName => _currentUser?.Name ?? string.Empty;
     public string? CurUserId => _currentUser?.Id ?? string.Empty;
@@ -31,17 +32,17 @@ public partial class FirebaseService
     private FirebaseService()
     {
         string credentialsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "empty.json");
-    
+
         try
         {
             FileDecryption.DecryptFile(encryptedFilePath, credentialsPath);
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", credentialsPath);
-        
+
             firebaseApp = FirebaseApp.Create(new AppOptions
             {
                 Credential = GoogleCredential.FromFile(credentialsPath),
             });
-        
+
             firestoreDb = FirestoreDb.Create(CarsHistoryCollection);
             auth = FirebaseAuth.GetAuth(firebaseApp);
         }
@@ -52,60 +53,61 @@ public partial class FirebaseService
                 File.WriteAllText(credentialsPath, string.Empty);
             }
         }
-
     }
-    
+
     public static FirebaseService GetInstance()
     {
         return _instance ??= new FirebaseService();
     }
-    
+
     public async Task AddCarAsync(Car car)
     {
         var carRef = firestoreDb.Collection(CarCollection).Document();
         await carRef.SetAsync(car);
-        
+
         Console.WriteLine($"Car added with ID: {carRef.Id}");
     }
-    
+
     public async Task<List<Car>> GetCarsAsync()
     {
         List<Car> cars = new List<Car>();
-        QuerySnapshot? snapshot = await firestoreDb.Collection(CarCollection).GetSnapshotAsync();  // Отримуємо всі документи з колекції "cars"
-            
+        QuerySnapshot?
+            snapshot = await firestoreDb.Collection(CarCollection)
+                .GetSnapshotAsync(); // Отримуємо всі документи з колекції "cars"
+
         foreach (DocumentSnapshot? document in snapshot.Documents)
         {
             Car? car = document.ConvertTo<Car>();
-            car.Id = document.Id; 
+            car.Id = document.Id;
             cars.Add(car);
             car.ResetModified();
         }
-        
+
         return cars;
     }
-    
+
     public async Task<List<CarSearchItem>> GetCarsSearchAsync()
     {
         List<CarSearchItem> cars = new List<CarSearchItem>();
         QuerySnapshot? snapshot = await firestoreDb.Collection(CarsSearchCollection).GetSnapshotAsync();
-            
+
         foreach (DocumentSnapshot? document in snapshot.Documents)
         {
             CarSearchItem? car = document.ConvertTo<CarSearchItem>();
-            car.Id = document.Id; 
+            car.Id = document.Id;
             cars.Add(car);
             car.ResetModified();
         }
-        
+
         return cars;
     }
-    
+
     public async Task DeleteCarSearchAsync(string id)
     {
         DocumentReference? carRef = firestoreDb.Collection(CarsSearchCollection).Document(id);
         await carRef.DeleteAsync();
     }
-        
+
     public async Task<List<Car>> GetCarsWithoutStatusAsync()
     {
         List<Car> carsList = await GetCarsAsync();
@@ -119,7 +121,7 @@ public partial class FirebaseService
 
         return resultList;
     }
-    
+
     public async Task<List<Car>> GetCarsWithStatusAsync()
     {
         List<Car> carsList = await GetCarsAsync();
@@ -133,13 +135,13 @@ public partial class FirebaseService
 
         return resultList;
     }
-    
+
     public async Task ClearAuctionDatesAsync()
     {
         try
         {
             List<CarSearchItem> carSearchList = await GetCarsSearchAsync();
-            
+
             foreach (CarSearchItem item in carSearchList)
             {
                 // Очищаємо поля аукціонів
@@ -152,9 +154,9 @@ public partial class FirebaseService
                 item.Auction_autorola = null;
                 item.Auction_vw_finance = null;
             }
-            
+
             await SetNewCarSearchDataAsync(carSearchList);
-            
+
             Console.WriteLine($"Успішно очищено дати аукціонів: {DateTime.Now}");
         }
         catch (Exception ex)
@@ -164,33 +166,33 @@ public partial class FirebaseService
         }
     }
 
-    
+
     public async Task<List<CarStatus>> GetCarStatusesAsync()
     {
         List<CarStatus> carsStatusesList = new List<CarStatus>();
         QuerySnapshot? snapshot = await firestoreDb.Collection(CarStatusesCollection).GetSnapshotAsync();
-        
+
         foreach (DocumentSnapshot? document in snapshot.Documents)
         {
             CarStatus? carStatus = document.ConvertTo<CarStatus>();
-            carStatus.Id = document.Id; 
+            carStatus.Id = document.Id;
             carsStatusesList.Add(carStatus);
             carStatus.ResetModified();
         }
 
         return carsStatusesList;
     }
-    
+
     public async Task AddCarStatusAsync(CarStatus carStatus)
     {
         DocumentReference? carStatusRef = firestoreDb.Collection(CarStatusesCollection).Document();
-        
+
         carStatus.DateUpdated = DateTime.UtcNow;
         carStatus.LastPersonChange = CurUserName;
-        
+
         await carStatusRef.SetAsync(carStatus);
     }
-    
+
     public async Task SetNewCarStatusDataAsync(List<CarStatus>? carsStatusList)
     {
         if (carsStatusList != null)
@@ -204,7 +206,7 @@ public partial class FirebaseService
             }
         }
     }
-    
+
     public async Task SetNewCarSearchDataAsync(List<CarSearchItem>? carSearchesList)
     {
         if (carSearchesList != null)
@@ -218,14 +220,14 @@ public partial class FirebaseService
             }
         }
     }
-    
+
     public async Task AddCarSearchAsync(CarSearchItem carSearchItem)
     {
         try
         {
             CollectionReference carSearchesRef = firestoreDb.Collection(CarsSearchCollection);
             DocumentReference addedDocRef = await carSearchesRef.AddAsync(carSearchItem);
-            
+
             await addedDocRef.SetAsync(carSearchItem);
         }
         catch (Exception ex)
@@ -239,16 +241,16 @@ public partial class FirebaseService
     public async Task SetCarStatusFieldInCarDataAsync(string carId, string statusId = "")
     {
         DocumentReference? docRef = firestoreDb.Collection(CarCollection).Document(carId);
-        
+
         if (docRef == null)
             return;
-        
+
         DocumentSnapshot documentSnapshot = await docRef.GetSnapshotAsync();
 
         Car? car = documentSnapshot.ConvertTo<Car>();
-        
+
         car.CarStatusId = statusId;
-        
+
         car.ResetModified();
         await docRef.SetAsync(car);
     }
@@ -267,23 +269,102 @@ public partial class FirebaseService
             }
         }
     }
-    
+
     public async Task DeleteCarStatusAsync(string id)
     {
         DocumentReference? carRef = firestoreDb.Collection(CarStatusesCollection).Document(id);
         List<Car> carsList = await GetCarsAsync();
 
         string carId = carsList.FirstOrDefault(t => t.CarStatusId == id)?.Id ?? "";
-        
+
         if (!carId.IsNullOrEmpty())
             await SetCarStatusFieldInCarDataAsync(carId);
-        
+
         await carRef.DeleteAsync();
     }
-    
+
     public async Task DeleteCarAsync(string id)
     {
         DocumentReference? carRef = firestoreDb.Collection(CarCollection).Document(id);
         await carRef.DeleteAsync();
+    }
+
+    public async Task<List<OfferItem>> GetOffersByCarSearchIdsAsync(List<string> carSearchIds)
+    {
+        var offers = new List<OfferItem>();
+        if (carSearchIds == null || !carSearchIds.Any())
+        {
+            return offers;
+        }
+
+        Query query = firestoreDb.Collection(OffersCollection).WhereIn("CarSearchItemId", carSearchIds);
+        QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+        foreach (var doc in snapshot.Documents)
+        {
+            OfferItem offer = doc.ConvertTo<OfferItem>();
+            offer.Id = doc.Id;
+            offers.Add(offer);
+        }
+
+        return offers;
+    }
+
+    public async Task<List<string>> GetCarSearchGroupsAsync()
+    {
+        var carSearches = await GetCarsSearchAsync();
+        return carSearches
+            .Select(cs => cs.Group)
+            .Where(g => !string.IsNullOrWhiteSpace(g))
+            .Distinct()
+            .OrderBy(g => g)
+            .ToList();
+    }
+
+    public async Task<List<CarSearchItem>> GetCarsSearchByGroupAsync(string group)
+    {
+        List<CarSearchItem> cars = new List<CarSearchItem>();
+        Query query = firestoreDb.Collection(CarsSearchCollection).WhereEqualTo("Group", group);
+        QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+        foreach (DocumentSnapshot document in snapshot.Documents)
+        {
+            CarSearchItem car = document.ConvertTo<CarSearchItem>();
+            car.Id = document.Id;
+            cars.Add(car);
+        }
+
+        return cars;
+    }
+
+    public async Task AddOfferAsync(OfferItem offer)
+    {
+        await firestoreDb.Collection(OffersCollection).AddAsync(offer);
+    }
+
+    public async Task DeleteOffersAsync(List<string> offerIds)
+    {
+        if (offerIds == null || !offerIds.Any())
+            return;
+
+        WriteBatch batch = firestoreDb.StartBatch();
+        foreach (var offerId in offerIds)
+        {
+            DocumentReference docRef = firestoreDb.Collection(OffersCollection).Document(offerId);
+            batch.Delete(docRef);
+        }
+        await batch.CommitAsync();
+    }
+
+    public async Task UpdateOffersAsync(List<OfferItem> offersToUpdate)
+    {
+        WriteBatch batch = firestoreDb.StartBatch();
+        foreach (var offer in offersToUpdate)
+        {
+            DocumentReference docRef = firestoreDb.Collection(OffersCollection).Document(offer.Id);
+            batch.Set(docRef, offer, SetOptions.MergeAll);
+        }
+
+        await batch.CommitAsync();
     }
 }

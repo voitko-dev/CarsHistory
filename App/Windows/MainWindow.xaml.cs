@@ -48,8 +48,13 @@ public partial class MainWindow : Window
     private void btnCarOperations_Click(object sender, RoutedEventArgs e)
     {
         carOperationsPopup.IsOpen = !carOperationsPopup.IsOpen;
-        if (role is UsersRole.Admin or UsersRole.Admin) 
+        if (role is UsersRole.Admin or UsersRole.SuperAdmin)
             SetItemsVisibility();
+    }
+
+    private void btnOffers_Click(object sender, RoutedEventArgs e)
+    {
+        OpenWindowAndClosePopup(() => new OffersWindow());
     }
     
     private async void CheckUserRole()

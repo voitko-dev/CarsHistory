@@ -1,0 +1,126 @@
+﻿<Window x:Class="CarsHistory.Windows.OffersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:items="clr-namespace:CarsHistory.Items"
+        xmlns:converter="clr-namespace:CarsHistory.Converter"
+        mc:Ignorable="d"
+        Title="Офери" Height="720" Width="1280"
+        WindowStartupLocation="CenterScreen"
+        Background="#181735"
+        Icon="../Resources/Images/Logo.png">
+
+    <Window.Resources>
+        <converter:OfferStatusToBrushConverter x:Key="OfferStatusToBrushConverter" />
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FE6584" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Height" Value="35" />
+            <Setter Property="Width" Value="180" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="Margin" Value="5" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF4C70" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.5" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel Margin="10">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Name="btnAddOffer" Content="Додати офер" Click="btnAddOffer_Click" />
+            <Button Name="btnSaveChanges" Content="Зберегти зміни" Click="btnSaveChanges_Click" IsEnabled="False" />
+            <Button Name="btnDelete" Content="Видалити обране" Click="btnDelete_Click" Background="DarkRed" />
+
+            <Label Content="Група:" Foreground="White" VerticalAlignment="Center" Margin="15,0,0,0" />
+            <ComboBox Name="cmbGroupFilter" Width="200" Margin="5" SelectionChanged="cmbGroupFilter_SelectionChanged"/>
+
+            <CheckBox Name="chkShowOnlyPlaying" Content="Показати тільки ті, що грають"
+                      Foreground="White" VerticalAlignment="Center" Margin="15,0,0,0"
+                      Checked="chkShowOnlyPlaying_Changed" Unchecked="chkShowOnlyPlaying_Changed"/>
+        </StackPanel>
+
+        <DataGrid Name="dataGridOffers"
+                  ItemsSource="{Binding Offers}"
+                  PreviewMouseDown="dataGridOffers_PreviewMouseDown"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  Foreground="Black"
+                  Background="Transparent"
+                  BorderBrush="#FF4C70"
+                  HorizontalGridLinesBrush="#FF4C70"
+                  VerticalGridLinesBrush="#FF4C70"
+                  CellEditEnding="dataGridOffers_CellEditEnding">
+
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background" Value="{Binding Status, Converter={StaticResource OfferStatusToBrushConverter}}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Status}" Value="{x:Static items:OfferStatus.Playing}">
+                            <Setter Property="Background" Value="LightGreen" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="{x:Static items:OfferStatus.NotPlaying}">
+                            <Setter Property="Background" Value="LightCoral" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="Видалити" Binding="{Binding IsSelectedForDeletion, UpdateSourceTrigger=PropertyChanged}" Width="70" />
+                <DataGridTextColumn Header="Група" Binding="{Binding GroupName}" IsReadOnly="True" Width="100"/>
+
+                <DataGridTemplateColumn Header="Посилання" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="linkTextBlock" Padding="5" VerticalAlignment="Center" Loaded="LinkTextBlock_Loaded" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Link, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Опис" Binding="{Binding Description}" Width="2*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                            <Setter Property="Padding" Value="5" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Дата закінчення" Binding="{Binding EndDate, StringFormat='dd.MM.yyyy'}" IsReadOnly="True" Width="120" />
+                <DataGridTextColumn Header="Час" Binding="{Binding EndDate, StringFormat='HH:mm'}" IsReadOnly="True" Width="60" />
+
+                <DataGridTextColumn Header="Граємо до ціни" Binding="{Binding MaxPrice, StringFormat='N2'}" Width="120" />
+
+                <DataGridComboBoxColumn Header="Грати?" Width="120"
+                                        SelectedValueBinding="{Binding Status}"
+                                        x:Name="comboStatusColumn" />
+
+                <DataGridTextColumn Header="Автор зміни" Binding="{Binding LastChangeAuthor}" IsReadOnly="True" Width="150" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>

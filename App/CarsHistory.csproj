@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <Version>3.9</Version>
+        <Version>4.0</Version>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net8.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
@@ -27,6 +27,7 @@
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
       </Page>
+      <Page Remove="Windows\AddAuctionOfferWindow.xaml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -51,5 +52,9 @@
 
     <ItemGroup>
       <None Remove="cars-history.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Windows\AddAuctionOfferWindow.xaml.cs" />
     </ItemGroup>
 </Project>
