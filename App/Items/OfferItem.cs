@@ -9,7 +9,8 @@ namespace CarsHistory.Items
     {
         NotSelected, // Не обрано
         Playing,     // Так
-        NotPlaying   // Ні
+        NotPlaying,   // Ні
+        Expired      // Протерміновано
     }
 
     [FirestoreData]

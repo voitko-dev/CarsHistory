@@ -107,15 +107,13 @@ namespace CarsHistory.Windows
 
                 if (group == "None")
                 {
-                    // Якщо вибрано "None", завантажуємо ВСІ офери
                     allCarSearches = await _firebaseService.GetCarsSearchAsync();
-                    allOffersInGroup = await _firebaseService.GetAllOffersAsync(); // Потрібен новий метод
+                    allOffersInGroup = await _firebaseService.GetAllOffersAsync();
                     _currentGroupCarSearches =
                         allCarSearches.ToDictionary(cs => cs.Id, cs => $"{cs.Brand} {cs.Model} ({cs.Group})");
                 }
                 else
                 {
-                    // Інакше працюємо як раніше
                     allCarSearches = await _firebaseService.GetCarsSearchByGroupAsync(group);
                     _currentGroupCarSearches =
                         allCarSearches.ToDictionary(cs => cs.Id, cs => $"{cs.Brand} {cs.Model} ({cs.Group})");
@@ -123,34 +121,40 @@ namespace CarsHistory.Windows
                     allOffersInGroup = await _firebaseService.GetOffersByCarSearchIdsAsync(carSearchIds);
                 }
 
-                // --- Решта логіки залишається такою ж ---
                 var offersToUpdate = new List<OfferItem>();
                 var offerIdsToDelete = new List<string>();
                 var now = DateTime.UtcNow;
 
                 foreach (var offer in allOffersInGroup)
                 {
-                    if (offer.EndDate.HasValue && offer.EndDate.Value.ToUniversalTime() < now)
+                    if (offer.EndDate.HasValue)
                     {
-                        if (offer.Status != OfferStatus.NotPlaying)
-                        {
-                            offer.Status = OfferStatus.NotPlaying;
-                            offersToUpdate.Add(offer);
-                        }
+                        var endDateUtc = DateTime.SpecifyKind(offer.EndDate.Value, DateTimeKind.Utc);
 
-                        if ((now - offer.EndDate.Value.ToUniversalTime()).TotalDays > 1)
+                        if (endDateUtc < now)
                         {
-                            offerIdsToDelete.Add(offer.Id);
+                            if (offer.Status is OfferStatus.Playing or OfferStatus.NotSelected)
+                            {
+                                offer.Status = OfferStatus.Expired;
+                                offersToUpdate.Add(offer);
+                            }
+
+                            if ((now - endDateUtc).TotalHours > 24)
+                            {
+                                offerIdsToDelete.Add(offer.Id);
+                            }
                         }
                     }
                 }
 
-                if (offersToUpdate.Any()) await _firebaseService.UpdateOffersAsync(offersToUpdate);
-                if (offerIdsToDelete.Any()) await _firebaseService.DeleteOffersAsync(offerIdsToDelete);
+                if (offersToUpdate.Any())
+                    await _firebaseService.UpdateOffersAsync(offersToUpdate);
+
+                if (offerIdsToDelete.Any())
+                    await _firebaseService.DeleteOffersAsync(offerIdsToDelete);
 
                 if (offersToUpdate.Any() || offerIdsToDelete.Any())
                 {
-                    // Перезавантажуємо дані після автоматичних змін
                     if (group == "None")
                     {
                         _allLoadedOffers = await _firebaseService.GetAllOffersAsync();
@@ -176,12 +180,25 @@ namespace CarsHistory.Windows
                     }
                 }
 
-                ApplyFiltersAndSort();
+                ApplySortOnly();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Помилка завантаження оферів: {ex.Message}", "Помилка", MessageBoxButton.OK,
                     MessageBoxImage.Error);
+            }
+        }
+
+        private void ApplySortOnly()
+        {
+            Offers.Clear();
+
+            var sortedOffers = _allLoadedOffers.OrderBy(o => o.EndDate);
+
+            foreach (var offer in sortedOffers)
+            {
+                offer.ResetModified();
+                Offers.Add(offer);
             }
         }
 
@@ -229,7 +246,6 @@ namespace CarsHistory.Windows
                     await _firebaseService.AddOfferAsync(addWindow.NewOffer);
                     MessageBox.Show("Офер успішно додано!", "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    // Оновлюємо список
                     await LoadOffersByGroupAsync(cmbGroupFilter.SelectedItem as string);
                 }
                 catch (Exception ex)

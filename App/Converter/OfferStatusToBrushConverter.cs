@@ -17,8 +17,10 @@ namespace CarsHistory.Converter
                         return new SolidColorBrush(Colors.LightGreen);
                     case OfferStatus.NotPlaying:
                         return new SolidColorBrush(Colors.LightCoral);
+                    case OfferStatus.Expired:
+                        return new SolidColorBrush(Colors.Gray);
                     case OfferStatus.NotSelected:
-                        return Brushes.Transparent; // або Brushes.White, якщо треба
+                        return Brushes.Transparent;
                 }
             }
             return Brushes.Transparent;
