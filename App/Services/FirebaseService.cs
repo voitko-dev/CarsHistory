@@ -337,6 +337,20 @@ public partial class FirebaseService
         return cars;
     }
 
+    public async Task<List<OfferItem>> GetAllOffersAsync()
+    {
+        var offers = new List<OfferItem>();
+        QuerySnapshot snapshot = await firestoreDb.Collection(OffersCollection).GetSnapshotAsync();
+
+        foreach (var doc in snapshot.Documents)
+        {
+            OfferItem offer = doc.ConvertTo<OfferItem>();
+            offer.Id = doc.Id;
+            offers.Add(offer);
+        }
+        return offers;
+    }
+
     public async Task AddOfferAsync(OfferItem offer)
     {
         await firestoreDb.Collection(OffersCollection).AddAsync(offer);
@@ -354,6 +368,24 @@ public partial class FirebaseService
             batch.Delete(docRef);
         }
         await batch.CommitAsync();
+    }
+
+    public async Task<List<OfferItem>> GetAllPlayingOffersAsync()
+    {
+        var offers = new List<OfferItem>();
+        QuerySnapshot snapshot = await firestoreDb.Collection(OffersCollection).GetSnapshotAsync();
+
+        foreach (var doc in snapshot.Documents)
+        {
+            OfferItem offer = doc.ConvertTo<OfferItem>();
+
+            if (offer.Status != OfferStatus.Playing)
+                continue;
+
+            offer.Id = doc.Id;
+            offers.Add(offer);
+        }
+        return offers;
     }
 
     public async Task UpdateOffersAsync(List<OfferItem> offersToUpdate)

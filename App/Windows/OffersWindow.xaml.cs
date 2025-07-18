@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -39,6 +35,7 @@ namespace CarsHistory.Windows
             try
             {
                 var groups = await _firebaseService.GetCarSearchGroupsAsync();
+                groups.Insert(0, "None");
                 cmbGroupFilter.ItemsSource = groups;
                 if (groups.Any())
                 {
@@ -105,13 +102,28 @@ namespace CarsHistory.Windows
 
             try
             {
-                var carSearchesInGroup = await _firebaseService.GetCarsSearchByGroupAsync(group);
-                _currentGroupCarSearches =
-                    carSearchesInGroup.ToDictionary(cs => cs.Id, cs => $"{cs.Brand} {cs.Model} ({cs.Group})");
+                List<CarSearchItem> allCarSearches;
+                List<OfferItem> allOffersInGroup;
 
-                var carSearchIds = carSearchesInGroup.Select(cs => cs.Id).ToList();
-                var allOffersInGroup = await _firebaseService.GetOffersByCarSearchIdsAsync(carSearchIds);
+                if (group == "None")
+                {
+                    // Якщо вибрано "None", завантажуємо ВСІ офери
+                    allCarSearches = await _firebaseService.GetCarsSearchAsync();
+                    allOffersInGroup = await _firebaseService.GetAllOffersAsync(); // Потрібен новий метод
+                    _currentGroupCarSearches =
+                        allCarSearches.ToDictionary(cs => cs.Id, cs => $"{cs.Brand} {cs.Model} ({cs.Group})");
+                }
+                else
+                {
+                    // Інакше працюємо як раніше
+                    allCarSearches = await _firebaseService.GetCarsSearchByGroupAsync(group);
+                    _currentGroupCarSearches =
+                        allCarSearches.ToDictionary(cs => cs.Id, cs => $"{cs.Brand} {cs.Model} ({cs.Group})");
+                    var carSearchIds = allCarSearches.Select(cs => cs.Id).ToList();
+                    allOffersInGroup = await _firebaseService.GetOffersByCarSearchIdsAsync(carSearchIds);
+                }
 
+                // --- Решта логіки залишається такою ж ---
                 var offersToUpdate = new List<OfferItem>();
                 var offerIdsToDelete = new List<string>();
                 var now = DateTime.UtcNow;
@@ -133,21 +145,31 @@ namespace CarsHistory.Windows
                     }
                 }
 
-                if (offersToUpdate.Any())
-                    await _firebaseService.UpdateOffersAsync(offersToUpdate);
-
-                if (offerIdsToDelete.Any())
-                    await _firebaseService.DeleteOffersAsync(offerIdsToDelete);
+                if (offersToUpdate.Any()) await _firebaseService.UpdateOffersAsync(offersToUpdate);
+                if (offerIdsToDelete.Any()) await _firebaseService.DeleteOffersAsync(offerIdsToDelete);
 
                 if (offersToUpdate.Any() || offerIdsToDelete.Any())
-                    _allLoadedOffers = await _firebaseService.GetOffersByCarSearchIdsAsync(carSearchIds);
-
+                {
+                    // Перезавантажуємо дані після автоматичних змін
+                    if (group == "None")
+                    {
+                        _allLoadedOffers = await _firebaseService.GetAllOffersAsync();
+                    }
+                    else
+                    {
+                        _allLoadedOffers =
+                            await _firebaseService.GetOffersByCarSearchIdsAsync(allCarSearches.Select(cs => cs.Id)
+                                .ToList());
+                    }
+                }
                 else
+                {
                     _allLoadedOffers = allOffersInGroup;
+                }
 
                 foreach (var offer in _allLoadedOffers)
                 {
-                    var parentCarSearch = carSearchesInGroup.FirstOrDefault(cs => cs.Id == offer.CarSearchItemId);
+                    var parentCarSearch = allCarSearches.FirstOrDefault(cs => cs.Id == offer.CarSearchItemId);
                     if (parentCarSearch != null)
                     {
                         offer.GroupName = parentCarSearch.Group;

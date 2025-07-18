@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Додати новий офер" Height="450" Width="400"
+        Title="Додати новий офер" Height="650" Width="400"
         WindowStartupLocation="CenterOwner"
         Background="#181735"
         Icon="../Resources/Images/Logo.png">

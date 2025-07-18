@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.Windows;
+﻿using System.Windows;
 using System.Globalization;
-using CarsHistory.Extentions;
+using CarsHistory.Services;
 
 
 namespace CarsHistory;
@@ -16,6 +15,8 @@ public partial class App : Application
         CultureInfo culture = new CultureInfo("uk-UA");
         Thread.CurrentThread.CurrentCulture = culture;
         Thread.CurrentThread.CurrentUICulture = culture;
+
+        NotificationService.GetInstance().Start();
 
         // Для всіх нових потоків
         FrameworkElement.LanguageProperty.OverrideMetadata(

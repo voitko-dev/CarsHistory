@@ -1,0 +1,16 @@
+﻿<Window x:Class="CarsHistory.Windows.LotNotificationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Сповіщення про лот!" Width="350" SizeToContent="Height" MaxHeight="450"
+        WindowStyle="ToolWindow" Topmost="True" ShowInTaskbar="False"
+        Closed="Window_Closed"
+        WindowStartupLocation="Manual" Background="#181735" ResizeMode="NoResize">
+    <Border BorderBrush="#FE6584" BorderThickness="2" Margin="5">
+        <StackPanel Margin="10">
+            <TextBlock Name="lblTitle" Text="Лот скоро закінчиться!" Foreground="#FE6584" FontSize="16" FontWeight="Bold" />
+            <TextBlock Name="lblDescription" Text="Опис..." Foreground="White" Margin="0,5,0,0" TextWrapping="Wrap" />
+            <TextBlock Name="lblLink" Text="Посилання..." Foreground="LightBlue" Margin="0,5,0,0" />
+            <TextBlock Name="lblTimeLeft" Text="Залишилось часу: ..." Foreground="White" Margin="0,5,0,0" />
+        </StackPanel>
+    </Border>
+</Window>

@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:items="clr-namespace:CarsHistory.Items"
         xmlns:converter="clr-namespace:CarsHistory.Converter"
+        xmlns:converter1="clr-namespace:CarsHistory.Converter"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Офери" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
@@ -13,6 +15,7 @@
 
     <Window.Resources>
         <converter:OfferStatusToBrushConverter x:Key="OfferStatusToBrushConverter" />
+        <converter1:UtcToLocalTimeConverter x:Key="UtcToLocalTimeConverter" />
         <Style TargetType="Button">
             <Setter Property="Background" Value="#FE6584" />
             <Setter Property="Foreground" Value="White" />
@@ -110,8 +113,20 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Дата закінчення" Binding="{Binding EndDate, StringFormat='dd.MM.yyyy'}" IsReadOnly="True" Width="120" />
-                <DataGridTextColumn Header="Час" Binding="{Binding EndDate, StringFormat='HH:mm'}" IsReadOnly="True" Width="60" />
+                <DataGridTemplateColumn Header="Дата закінчення" Width="170">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding EndDate, Converter={StaticResource UtcToLocalTimeConverter}, StringFormat='dd.MM.yyyy HH:mm'}"
+                                       Padding="5" VerticalAlignment="Center" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <xctk:DateTimePicker Value="{Binding EndDate, Converter={StaticResource UtcToLocalTimeConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 Format="Custom" FormatString="dd.MM.yyyy HH:mm" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
 
                 <DataGridTextColumn Header="Граємо до ціни" Binding="{Binding MaxPrice, StringFormat='N2'}" Width="120" />
 
