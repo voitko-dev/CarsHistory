@@ -59,7 +59,7 @@ namespace CarsHistory.Windows
                 if (isBlocked)
                 {
                     // Користувач заблокований, показуємо повідомлення
-                    ShowBlockedUserWindow();
+                    //ShowBlockedUserWindow();
                     return;
                 }
                 
